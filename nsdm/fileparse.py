@@ -24,11 +24,12 @@ class Gff:
         self.strand = data[6]
         info = data[8].split(";")
         self.gene = info[0].split(":")[1]
-        self.description = info[2].split("=")[1]
+        self.description = info[2].split("=")[1].replace("%2C",",")
 
 
 def vcf_read(filename):
     """read vcf file"""
+    filename = os.path.abspath(os.path.expanduser(filename))
     result = []
     fp = open(filename,"r")
     vcf_r = vcf.Reader(fp)
@@ -50,10 +51,11 @@ def vcf_allread(targetdir):
 
 def gff_read(filename):
     """read gff file"""
+    filename = os.path.abspath(os.path.expanduser(filename))
     result = dict()
     fp = open(filename,"r")
     for i in fp:
-        data = i.split()
+        data = i.split("\t")
         if i[0] != "#" and data[2] == "gene":
             gene = data[8].split(";")[0].split(":")[1]
             result[gene] = Gff(data)
