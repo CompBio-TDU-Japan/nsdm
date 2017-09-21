@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import nsdm
 def main():
-    a = nsdm.fileparse.vcf_read("/Users/yuto/Dropbox/Lab/code/ngsdata/allvcf/Generation01.vcf")
+    a = nsdm.allvariant.main()
     print(a)
 
 if __name__ == '__main__':
