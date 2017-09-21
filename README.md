@@ -29,6 +29,14 @@ variant_list = nsdm.fileparse.vcf_read(filename)
 * gene
 * feature
 
+#### vcf_allread
+
+read all vcf files.
+
+```
+vcflist = nsdm.fileparse.vcf_allread(filedir)
+```
+
 #### gff_read
 
 return gff object dict.

@@ -1,5 +1,10 @@
 # -*- coding: utf-8 -*-
 import vcf
+import re
+import glob
+import os.path
+
+param = re.compile("LOW|MODIFIER")
 
 class Vcf:
     def __init__(self,data):
@@ -28,8 +33,19 @@ def vcf_read(filename):
     fp = open(filename,"r")
     vcf_r = vcf.Reader(fp)
     for v in vcf_r:
-        result.append(Vcf(v))
+        vcfobj = Vcf(v)
+        if re.match(param,vcfobj.impact) == None:
+            result.append(vcfobj)
     fp.close()
+    return result
+
+def vcf_allread(targetdir):
+    result = []
+    allvariantdir = os.path.abspath(os.path.expanduser(targetdir))
+    vcffiles = sorted(glob.glob(allvariantdir + "/*.vcf"))
+    for i in vcffiles:
+        vlist = vcf_read(i)
+        result.append(vlist)
     return result
 
 def gff_read(filename):
