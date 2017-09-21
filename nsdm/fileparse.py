@@ -1,9 +1,6 @@
 # -*- coding: utf-8 -*-
 import vcf
 
-
-##INFO=<ID=ANN,Number=.,Type=String,Description="Functional annotations: 'Allele | Annotation | Annotation_Impact | Gene_Name | Gene_ID | Feature_Type | Feature_ID | Transcript_BioType | Rank | HGVS.c | HGVS.p | cDNA.pos / cDNA.length | CDS.pos / CDS.length | AA.pos / AA.length | Distance | ERRORS / WARNINGS / INFO' ">
-
 class Vcf:
     def __init__(self,data):
         info = data.INFO["ANN"][0].split("|")
