@@ -2,3 +2,5 @@ myenv
 nsdm/__pycache__
 nsdm.egg-info
 tests
+dist
+build
