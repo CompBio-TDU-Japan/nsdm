@@ -2,8 +2,9 @@
 # -*- coding: utf-8 -*-
 
 from setuptools import setup, find_packages
-from nsdm import __version__
-from nsdm import __author__
+
+__author__ = 'Yuto Kimura'
+__version__ = '0.0.2'
 
 with open('README.md') as f:
     readme = f.read()
@@ -13,9 +14,6 @@ with open('LICENSE') as f:
 
 setup(
     name='nsdm',
-    install_requires=[
-        "PyVCF"
-    ],               # 依存ライブラリ
     version=__version__,
     description='NGS Software Development Module',
     long_description=readme,
@@ -24,4 +22,7 @@ setup(
     url='https://github.com/CompBio-TDU-Japan/nsdm',
     license=license,
     packages=find_packages(),
+    install_requires=[
+        "PyVCF"
+    ],               # 依存ライブラリ
 )
