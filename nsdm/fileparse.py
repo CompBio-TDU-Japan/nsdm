@@ -71,5 +71,17 @@ def gff_read(filename):
     return result
 
 
+def v_intersect(variant_list):
+    vsum = dict()
+    for g in data:
+        for v in g:
+            vsum[v.sha1] = vsum.get(v.sha1, []) + [v]
+    ret = []
+    for k, v in vsum.items():
+        if len(v) == len(variant_list):
+            ret.append(v)
+    return ret
+
+
 def filepath(file):
     return os.path.abspath(os.path.expanduser(file))
