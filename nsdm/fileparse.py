@@ -83,7 +83,7 @@ def v_intersect(variant_list):
     return ret
 
 def bbhdict(f):
-    filename = nsdm.fileparse.filepath(f)
+    filename = filepath(f)
     f = open(filename,"r")
     ret = dict()
     for i in f:
