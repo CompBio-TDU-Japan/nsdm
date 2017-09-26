@@ -65,3 +65,6 @@ def gff_read(filename):
             result[gene] = Gff(data)
     fp.close()
     return result
+
+def filepath(file):
+    return os.path.abspath(os.path.expanduser(file))
