@@ -22,6 +22,6 @@ setup(
     license=license,
     packages=find_packages(),
     install_requires=[
-        "PyVCF",
+        "PyVCF"
     ],               # 依存ライブラリ
 )
