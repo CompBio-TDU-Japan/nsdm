@@ -31,7 +31,7 @@ class Gff:
 
 def vcf_read(filename):
     """read vcf file"""
-    filename = os.path.abspath(os.path.expanduser(filename))
+    filename = filepath(filename)
     result = []
     fp = open(filename, "r")
     vcf_r = vcf.Reader(fp)
@@ -45,7 +45,7 @@ def vcf_read(filename):
 
 def vcf_allread(targetdir):
     result = []
-    allvariantdir = os.path.abspath(os.path.expanduser(targetdir))
+    allvariantdir = filepath(targetdir)
     vcffiles = sorted(glob.glob(allvariantdir + "/*.vcf"))
     for i in vcffiles:
         vlist = vcf_read(i)
@@ -55,7 +55,7 @@ def vcf_allread(targetdir):
 
 def gff_read(filename):
     """read gff file"""
-    filename = os.path.abspath(os.path.expanduser(filename))
+    filename = filepath(filename)
     result = dict()
     fp = open(filename, "r")
     for i in fp:
