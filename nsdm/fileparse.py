@@ -79,8 +79,7 @@ def v_intersect(variant_list):
     ret = []
     for k, v in vsum.items():
         if len(v) == len(variant_list):
-            print(v)
-            ret.append(v)
+            ret.append(v[0])
     return ret
 
 
