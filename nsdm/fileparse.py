@@ -73,7 +73,7 @@ def gff_read(filename):
 
 def v_intersect(variant_list):
     vsum = dict()
-    for g in data:
+    for g in variant_list:
         for v in g:
             vsum[v.sha1] = vsum.get(v.sha1, []) + [v]
     ret = []
