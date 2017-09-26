@@ -13,6 +13,9 @@ with open('LICENSE') as f:
 
 setup(
     name='nsdm',
+    install_requires=[
+        "PyVCF"
+    ],               # 依存ライブラリ
     version=__version__,
     description='NGS Software Development Module',
     long_description=readme,
@@ -21,7 +24,4 @@ setup(
     url='https://github.com/CompBio-TDU-Japan/nsdm',
     license=license,
     packages=find_packages(),
-    install_requires=[
-        "PyVCF"
-    ],               # 依存ライブラリ
 )
