@@ -3,6 +3,7 @@ import vcf
 import re
 import glob
 import os.path
+import hashlib
 
 param = re.compile("LOW|MODIFIER")
 
@@ -12,11 +13,14 @@ class Vcf:
         info = data.INFO["ANN"][0].split("|")
         self.alt = str(data.ALT[0])
         self.ref = data.REF
-        self.pos = data.POS
+        self.pos = str(data.POS)
         self.annotation = info[1]
         self.impact = info[2]
         self.gene = info[4]
         self.feature = info[6].split(".")[0]
+        vid = (self.alt + self.ref + self.pos + self.annotation
+               + self.impact + self.gene + self.feature)
+        self.sha1 = hashlib.sha1(vid.encode('utf-8')).hexdigest()
 
 
 class Gff:
@@ -65,6 +69,7 @@ def gff_read(filename):
             result[gene] = Gff(data)
     fp.close()
     return result
+
 
 def filepath(file):
     return os.path.abspath(os.path.expanduser(file))
