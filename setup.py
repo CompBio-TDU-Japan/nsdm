@@ -4,7 +4,7 @@
 from setuptools import setup, find_packages
 
 __author__ = 'Yuto Kimura'
-__version__ = '0.0.3'
+__version__ = '0.0.1'
 
 with open('README.md') as f:
     readme = f.read()
