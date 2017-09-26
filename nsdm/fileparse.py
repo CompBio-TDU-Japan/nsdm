@@ -10,8 +10,7 @@ param = re.compile("LOW|MODIFIER")
 class Vcf:
     def __init__(self, data):
         info = data.INFO["ANN"][0].split("|")
-        self.alt = data.ALT
-        print(type(self.alt))
+        self.alt = data.ALT[0]
         self.ref = data.REF
         self.pos = data.POS
         self.annotation = info[1]
