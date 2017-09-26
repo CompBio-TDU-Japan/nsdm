@@ -17,6 +17,7 @@ class Vcf:
         self.impact = info[2]
         self.gene = info[4]
         self.feature = info[6].split(".")[0]
+        self.test = data.__dict__
 
 
 class Gff:
