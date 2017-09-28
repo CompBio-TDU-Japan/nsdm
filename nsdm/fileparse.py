@@ -82,6 +82,25 @@ def v_intersect(variant_list):
             ret.append(v[0])
     return ret
 
+def v_union(variant_list):
+    vsum = dict()
+    tf = 0
+    for g in variant_list:
+        for v in g:
+            if in_cobj(vsum.get(v.gene, []),v) == False:
+                vsum[v.gene] = vsum.get(v.gene, []) + [v]
+    return vsum
+
+def in_cobj(listobj , cobj):
+    tf = 0
+    for i in listobj:
+        if i.__dict__ == cobj.__dict__:
+            tf += 1
+    if tf > 0:
+        return True
+    else:
+        return False
+
 def bbhdict(f):
     filename = filepath(f)
     f = open(filename,"r")
@@ -89,6 +108,14 @@ def bbhdict(f):
     for i in f:
         k,v = i.strip().split("\t")[:2]
         ret[k] = v
+    return ret
+
+def bbh(f, variantlist):
+    ret = []
+    bdict = bbhdict(f)
+    for variant in variantlist:
+        variant.homolog = bdict[variant.gene]
+        ret.append(variant)
     return ret
 
 def filepath(file):
