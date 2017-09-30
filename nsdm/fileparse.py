@@ -114,7 +114,8 @@ def bbh(f, variantdict):
     result = dict()
     bdict = bbhdict(f)
     for key,valuelist in variantdict.items():
-        print(bdict[key])
+        homolog = bdict[key]
+        print(valuelist)
 
     exit()
     return ret
