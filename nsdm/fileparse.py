@@ -117,11 +117,9 @@ def bbh(f, variantdict):
         homolog = bdict[key]
         if homolog == "-":
             continue
-        newlist = []
         for v in valuelist:
             v.homolog = homolog
-            newlist.append(v)
-        result[key] = newlist
+            result[homolog] = result.get(homolog,[]) + [v]
     return result
 
 def filepath(file):
