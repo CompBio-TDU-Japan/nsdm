@@ -110,12 +110,13 @@ def bbhdict(f):
         ret[k] = v
     return ret
 
-def bbh(f, variantlist):
-    ret = []
+def bbh(f, variantdict):
+    result = dict()
     bdict = bbhdict(f)
-    for variant in variantlist:
-        variant.homolog = bdict[variant.gene]
-        ret.append(variant)
+    for key,valuelist in variantdict.items():
+        print(key)
+
+    exit()
     return ret
 
 def filepath(file):
