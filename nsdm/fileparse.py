@@ -115,10 +115,12 @@ def bbh(f, variantdict):
     bdict = bbhdict(f)
     for key,valuelist in variantdict.items():
         homolog = bdict[key]
-        print(valuelist)
-
-    exit()
-    return ret
+        newlist = []
+        for v in valuelist:
+            v.homolog = homolog
+            newlist.append(v)
+        result[key] = newlist
+    return result
 
 def filepath(file):
     return os.path.abspath(os.path.expanduser(file))
