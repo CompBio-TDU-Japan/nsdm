@@ -25,6 +25,7 @@ class Ref:
             vseq[(pos - 1)] = v.alt
         vseq = "".join(vseq)
         if self.variant[0].strand == "-":
+            print("-")
             seq = translate(seq_reverse(seq))
             vseq = translate(seq_reverse(vseq))
         else:
@@ -55,5 +56,4 @@ def translate(seq):
             elif re.match(pattern, s):
                 ret = ret + "X"
                 break
-    print(ret)
     return ret
