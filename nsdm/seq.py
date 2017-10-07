@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 from . import fileparse
+import re
 
 
 class Ref:
