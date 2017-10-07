@@ -23,7 +23,7 @@ class Ref:
             pos = int(v.pos)
             vseq[(pos - 1)] = v.alt
         vseq = "".join(vseq)
-        if self.variant.strand == "-":
+        if self.variant[0].strand == "-":
             seq = translate(seq_reverse(seq))
             vseq = translate(seq_reverse(vseq))
         return seq, vseq
