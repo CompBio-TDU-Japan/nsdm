@@ -8,7 +8,7 @@ class Ref:
         self.seq = fileparse.reference_read(reference_file)
         self.variant = ""
 
-    def cut():
+    def cut(self):
         x = variant[0]
         start = 0
         end = 0
