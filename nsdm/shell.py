@@ -6,11 +6,11 @@ import sys
 
 def run(command):
     if isinstance(command, str):
-        pass
+        command = [command]
     elif isinstance(command, list):
-        command = *command
+        command = [*command]
     # pout = subprocess.run(["/bin/bash", "-c"] + [command],
-    pout = subprocess.run([command],
+    pout = subprocess.run(command,
                           stdout=subprocess.PIPE,
                           stderr=subprocess.PIPE,
                           )
