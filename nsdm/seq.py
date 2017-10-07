@@ -13,7 +13,9 @@ class Ref:
         x = self.variant[0]
         start = 0
         end = 0
-        print(x)
+        print(x.gene)
+        print(x.start)
+        print(x.end)
         exit()
         if isinstance(x.start, str):
             start = int(x.start) - 1
