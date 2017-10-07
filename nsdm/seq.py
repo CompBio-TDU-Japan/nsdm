@@ -30,7 +30,7 @@ class Ref:
         else:
             seq = translate(seq)
             vseq = translate(vseq)
-        return seq, vseq
+        return (seq, vseq)
 
 
 def seq_reverse(seq):
