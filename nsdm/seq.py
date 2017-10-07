@@ -7,7 +7,7 @@ class Ref:
     def __init__(self, reference_file):
         self.seq = fileparse.reference_read(reference_file)
 
-    def cut(start, end):
+    def cut(self, start, end):
         return self.seq[start - 1:end]
 
 
