@@ -19,7 +19,7 @@ class Ref:
         seq = self.seq[start - 1:end]
         vseq = self.seq
         for v in self.variant:
-            vseq[v.pos - 1] = v.alt
+            vseq[int(v.pos) - 1] = v.alt
         if self.variant.strand == "-":
             seq = translate(seq_reverse(seq))
             vseq = translate(seq_reverse(vseq))
