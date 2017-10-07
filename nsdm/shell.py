@@ -20,7 +20,7 @@ def run(command):
         print(
             "#[info] Error! This command has stopped working.(see below)", file=sys.stderr)
         print("#-----------", file=sys.stderr)
-        print("#" + command, file=sys.stderr)
+        print("#" + str(command), file=sys.stderr)
         print("#-----------", file=sys.stderr)
         print("#" + returnstr, file=sys.stderr)
     else:
