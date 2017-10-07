@@ -13,9 +13,6 @@ class Ref:
         x = self.variant[0]
         start = 0
         end = 0
-        print(x.gene)
-        print(x.start)
-        print(x.end)
         if isinstance(x.start, str):
             start = int(x.start) - 1
         if isinstance(x.end, str):
@@ -26,12 +23,10 @@ class Ref:
         for v in self.variant:
             pos = int(v.pos)
             vseq[(pos - 1)] = v.alt
-        vseq = "".join(vseq)
-
-        print(vseq)
-        print(seq)
+        vseq = "".join(vseq)[start:end]
+        print(len(seq))
+        print(len(vseq))
         exit()
-        seq_p = seq[start:end]
         if self.variant[0].strand == "-":
             print("-")
             seq = translate(seq_reverse(seq))
