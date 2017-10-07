@@ -9,7 +9,7 @@ class Ref:
         self.variant = ""
 
     def cut(self):
-        x = variant[0]
+        x = self.variant[0]
         start = 0
         end = 0
         if isinstance(x.start, str):
