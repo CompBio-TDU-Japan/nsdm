@@ -16,11 +16,12 @@ class Ref:
         print(x.gene)
         print(x.start)
         print(x.end)
-        exit()
         if isinstance(x.start, str):
             start = int(x.start) - 1
         if isinstance(x.end, str):
             end = int(x.end)
+        print(start - end)
+        exit()
         seq = self.seq[start:end]
         vseq = self.seq
         vseq = list(vseq)
