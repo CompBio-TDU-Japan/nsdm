@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+import fileparse
+
 
 def seq_reverse(seq):
     compliments = {'N': 'N', 'A': 'T', 'C': 'G', 'G': 'C', 'T': 'A'}
@@ -24,3 +26,8 @@ def translate(seq):
                 ret = ret + "X"
                 break
     return ret
+
+
+def reference(filename):
+    ref = fileparse.reference_read(filename)
+    print(ref)
