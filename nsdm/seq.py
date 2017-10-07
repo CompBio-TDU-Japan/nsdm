@@ -26,6 +26,9 @@ class Ref:
         if self.variant[0].strand == "-":
             seq = translate(seq_reverse(seq))
             vseq = translate(seq_reverse(vseq))
+        else:
+            seq = translate(seq)
+            vseq = translate(vseq)
         return seq, vseq
 
 
