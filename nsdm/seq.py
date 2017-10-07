@@ -18,7 +18,6 @@ class Ref:
         if isinstance(x.end, str):
             end = int(x.end)
         seq = self.seq[start:end]
-        print(seq)
         vseq = self.seq
         vseq = list(vseq)
         for v in self.variant:
@@ -26,6 +25,8 @@ class Ref:
             vseq[(pos - 1)] = v.alt
         vseq = "".join(vseq)
 
+        print(vseq)
+        exit()
         seq_p = seq[start:end]
         if self.variant[0].strand == "-":
             print("-")
