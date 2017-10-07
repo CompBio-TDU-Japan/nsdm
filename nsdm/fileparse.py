@@ -115,7 +115,7 @@ def v_union(variant_list, gffdict=None):
 def in_cobj(listobj, cobj):
     tf = 0
     for i in listobj:
-        if i.__dict__ == cobj.__dict__:
+        if i.sha1 == cobj.sha1:
             tf += 1
     if tf > 0:
         return True
