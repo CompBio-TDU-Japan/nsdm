@@ -51,7 +51,8 @@ def reference_read(filename):
     """read reference file"""
     filename = filepath(filename)
     fp = open(filename, "r")
-    reference = "".join([x.strip() for x in fp.readlines()[1:]])
+    next(f)
+    reference = fp.read().strip().replace("\n", "")
     return reference
 
 

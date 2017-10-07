@@ -3,6 +3,14 @@
 from . import fileparse
 
 
+class Ref:
+    def __init__(self, reference_file):
+        self.seq = fileparse.reference_read(reference_file)
+
+    def cut(start, end):
+        return self.seq[start - 1:end]
+
+
 def seq_reverse(seq):
     compliments = {'N': 'N', 'A': 'T', 'C': 'G', 'G': 'C', 'T': 'A'}
     ret = "".join([compliments[x] for x in seq])[::-1]
@@ -26,8 +34,3 @@ def translate(seq):
                 ret = ret + "X"
                 break
     return ret
-
-
-def reference(filename):
-    ref = fileparse.reference_read(filename)
-    print(ref)
