@@ -13,7 +13,7 @@ class Ref:
         x = self.variant[0]
         start = 0
         end = 0
-        print(x.__dict__())
+        print(x)
         exit()
         if isinstance(x.start, str):
             start = int(x.start) - 1
