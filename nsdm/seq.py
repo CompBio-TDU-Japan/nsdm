@@ -20,8 +20,6 @@ class Ref:
             start = int(x.start) - 1
         if isinstance(x.end, str):
             end = int(x.end)
-        print(start - end)
-        exit()
         seq = self.seq[start:end]
         vseq = self.seq
         vseq = list(vseq)
