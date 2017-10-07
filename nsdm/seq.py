@@ -8,6 +8,10 @@ class Ref:
         self.seq = fileparse.reference_read(reference_file)
 
     def cut(self, start, end):
+        if isinstance(start, str):
+            start = int(start)
+        if isinstance(end, str):
+            end = int(end)
         return self.seq[start - 1:end]
 
 
