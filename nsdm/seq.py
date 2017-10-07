@@ -6,13 +6,17 @@ from . import fileparse
 class Ref:
     def __init__(self, reference_file):
         self.seq = fileparse.reference_read(reference_file)
+        self.variant = ""
 
-    def cut(self, start, end):
+    def cut_n(self, start, end):
         if isinstance(start, str):
             start = int(start)
         if isinstance(end, str):
             end = int(end)
-        return self.seq[start - 1:end]
+        seq = self.seq[start - 1:end]
+        if self.variant.strand == "-":
+            seq = seq_reverse(seq)
+        return seq
 
 
 def seq_reverse(seq):
