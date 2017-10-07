@@ -14,18 +14,19 @@ class Ref:
         start = 0
         end = 0
         if isinstance(x.start, str):
-            start = int(x.start)
+            start = int(x.start) - 1
         if isinstance(x.end, str):
             end = int(x.end)
-        seq = self.seq[start - 1:end]
+        seq = self.seq[start:end]
+        print(seq)
         vseq = self.seq
         vseq = list(vseq)
         for v in self.variant:
             pos = int(v.pos)
             vseq[(pos - 1)] = v.alt
         vseq = "".join(vseq)
-        print(seq)
-        print(vseq)
+
+        seq_p = seq[start:end]
         if self.variant[0].strand == "-":
             print("-")
             seq = translate(seq_reverse(seq))
