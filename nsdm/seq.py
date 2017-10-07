@@ -29,6 +29,7 @@ class Ref:
         vseq = "".join(vseq)
 
         print(vseq)
+        print(seq)
         exit()
         seq_p = seq[start:end]
         if self.variant[0].strand == "-":
