@@ -47,6 +47,14 @@ def vcf_read(filename):
     return result
 
 
+def reference_read(filename):
+    """read reference file"""
+    filename = filepath(filename)
+    fp = open(filename, "r")
+    reference = "".join([x.strip() for x in fp.readlines()[1:]])
+    return reference
+
+
 def vcf_allread(targetdir):
     result = []
     allvariantdir = filepath(targetdir)

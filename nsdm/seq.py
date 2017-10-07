@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
 
 
+class Seq:
+    def __init__(self, reference):
+
+
 def seq_reverse(seq):
     compliments = {'N': 'N', 'A': 'T', 'C': 'G', 'G': 'C', 'T': 'A'}
     ret = "".join([compliments[x] for x in seq])[::-1]
@@ -24,3 +28,6 @@ def translate(seq):
                 ret = ret + "X"
                 break
     return ret
+
+
+def cut(start, end)
