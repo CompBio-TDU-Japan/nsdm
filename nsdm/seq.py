@@ -24,9 +24,6 @@ class Ref:
             pos = int(v.pos)
             vseq[(pos - 1)] = v.alt
         vseq = "".join(vseq)[start:end]
-        print(len(seq))
-        print(len(vseq))
-        exit()
         if self.variant[0].strand == "-":
             print("-")
             seq = translate(seq_reverse(seq))
