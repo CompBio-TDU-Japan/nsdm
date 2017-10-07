@@ -47,7 +47,6 @@ def translate(seq):
     Base3 = "TCAGTCAGTCAGTCAGTCAGTCAGTCAGTCAGTCAGTCAGTCAGTCAGTCAGTCAGTCAGTCAG"
     target = re.findall('.' * 3, seq)
     ret = ""
-    print(target)
     for s in target:
         for (i1, i2, i3, p) in zip(Base1, Base2, Base3, AAs):
             if s == i1 + i2 + i3:
@@ -56,4 +55,5 @@ def translate(seq):
             elif re.match(pattern, s):
                 ret = ret + "X"
                 break
+    print(ret)
     return ret
