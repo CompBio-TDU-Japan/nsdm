@@ -18,11 +18,11 @@ class Ref:
             end = int(x.end)
         seq = self.seq[start - 1:end]
         vseq = self.seq
+        vseq = list(vseq)
         for v in self.variant:
             pos = int(v.pos)
-            print(pos)
-            print(type(pos))
-            vseq[pos - 1] = v.alt
+            vseq[(pos - 1)] = v.alt
+        vseq = "".join(vseq)
         if self.variant.strand == "-":
             seq = translate(seq_reverse(seq))
             vseq = translate(seq_reverse(vseq))
