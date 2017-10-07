@@ -92,13 +92,23 @@ def v_intersect(variant_list):
     return ret
 
 
-def v_union(variant_list):
+def v_union(variant_list, gffdict=None):
     vsum = dict()
-    tf = 0
-    for g in variant_list:
-        for v in g:
-            if in_cobj(vsum.get(v.gene, []), v) == False:
-                vsum[v.gene] = vsum.get(v.gene, []) + [v]
+    if gffdict == None:
+        for g in variant_list:
+            for v in g:
+                if in_cobj(vsum.get(v.gene, []), v) == False:
+                    vsum[v.gene] = vsum.get(v.gene, []) + [v]
+    else:
+        for g in variant_list:
+            for v in g:
+                if in_cobj(vsum.get(v.gene, []), v) == False:
+                    gff = gffdict[v.gene]
+                    v.start = gff.start
+                    v.end = gff.end
+                    v.strand = gff.strand
+                    v.description = gff.description
+                    vsum[v.gene] = vsum.get(v.gene, []) + [v]
     return vsum
 
 
