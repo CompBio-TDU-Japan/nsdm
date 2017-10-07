@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-import fileparse
+from . import fileparse
 
 
 def seq_reverse(seq):
