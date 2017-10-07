@@ -5,10 +5,10 @@ import sys
 
 
 def run(command):
-    pout = subprocess.run(command,
+    pout = subprocess.run(["/bin/bash", "-c"] + [command],
                           stdout=subprocess.PIPE,
                           stderr=subprocess.PIPE,
-                          shell=True, executable='/bin/bash')
+                          )
     returnstr = ""
     if pout.returncode != 0:
         returnstr = pout.stderr.decode("UTF-8").strip()
