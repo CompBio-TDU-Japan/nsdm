@@ -30,7 +30,7 @@ class Ref:
         else:
             seq = translate(seq)
             vseq = translate(vseq)
-        return (seq, vseq)
+        return (seq.split("*")[0], vseq.split("*")[0])
 
 
 def seq_reverse(seq):
