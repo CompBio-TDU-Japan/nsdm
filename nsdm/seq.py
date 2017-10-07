@@ -19,8 +19,9 @@ class Ref:
         seq = self.seq[start - 1:end]
         vseq = self.seq
         for v in self.variant:
-            print(v.pos)
-            print(type(v.pos))
+            pos = int(v.pos)
+            print(pos)
+            print(type(pos))
             vseq[int(v.pos) - 1] = v.alt
         if self.variant.strand == "-":
             seq = translate(seq_reverse(seq))
