@@ -25,11 +25,9 @@ class Ref:
             vseq[(pos - 1)] = v.alt
         vseq = "".join(vseq)[start:end]
         if self.variant[0].strand == "-":
-            print("-")
             seq = translate(seq_reverse(seq))
             vseq = translate(seq_reverse(vseq))
         else:
-            print("+")
             seq = translate(seq)
             vseq = translate(vseq)
         return (seq, vseq)
@@ -49,7 +47,6 @@ def translate(seq):
     Base3 = "TCAGTCAGTCAGTCAGTCAGTCAGTCAGTCAGTCAGTCAGTCAGTCAGTCAGTCAGTCAGTCAG"
     target = re.findall('.' * 3, seq)
     ret = ""
-    print(target)
     for s in target:
         for (i1, i2, i3, p) in zip(Base1, Base2, Base3, AAs):
             if s == i1 + i2 + i3:
