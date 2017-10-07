@@ -8,15 +8,22 @@ class Ref:
         self.seq = fileparse.reference_read(reference_file)
         self.variant = ""
 
-    def cut_n(self, start, end):
-        if isinstance(start, str):
-            start = int(start)
-        if isinstance(end, str):
-            end = int(end)
+    def cut():
+        x = variant[0]
+        start = 0
+        end = 0
+        if isinstance(x.start, str):
+            start = int(x.start)
+        if isinstance(x.end, str):
+            end = int(x.end)
         seq = self.seq[start - 1:end]
+        vseq = self.seq
+        for v in variant:
+            vseq[v.pos - 1] = v.alt
         if self.variant.strand == "-":
-            seq = seq_reverse(seq)
-        return seq
+            seq = translate(seq_reverse(seq))
+            vseq = translate(seq_reverse(vseq))
+        return seq, vseq
 
 
 def seq_reverse(seq):
