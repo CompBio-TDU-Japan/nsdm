@@ -26,5 +26,5 @@ def run(command):
         return returnstr, False
     else:
         returnstr = pout.stdout.decode("UTF-8").strip()
-        print(returnstr)
+        print("#stdout:--------\n", returnstr)
         return returnstr, True
