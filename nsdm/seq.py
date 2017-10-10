@@ -63,6 +63,7 @@ class Ref:
             seq = translate(seq)
             vseq = translate(vseq)
         for n, v in enumerate(result):
+            print(v.pvp)
             print(vseq[v.pvp])
             v.palt = vseq[v.pvp]
             v.pref = seq[v.pvp]
