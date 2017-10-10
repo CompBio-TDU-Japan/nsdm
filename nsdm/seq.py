@@ -2,6 +2,7 @@
 
 from . import fileparse
 import re
+import math
 
 
 class Ref:
@@ -31,6 +32,30 @@ class Ref:
             seq = translate(seq)
             vseq = translate(vseq)
         return (seq.split("*")[0], vseq.split("*")[0])
+
+    def provean(self):
+        x = self.variant[0]
+        start = 0
+        end = 0
+        if isinstance(x.start, str):
+            start = int(x.start) - 1
+        if isinstance(x.end, str):
+            end = int(x.end)
+        seq = self.seq[start:end]
+        result = []
+        for v in self.variant:
+            pos = int(v.pos)
+            v.nvp = pos - v.start + 1
+            v.pvp = math.ceil(v.nop / 3)
+            if v.strand == "-":
+                v.nvp = len(seq) - (v.nvp + 1)
+                v.pvp = math.ceil(v.nvp / 3)
+            result.append(v)
+        if self.variant[0].strand == "-":
+            seq = translate(seq_reverse(seq))
+        else:
+            seq = translate(seq)
+        return (seq.split("*")[0], result)
 
 
 def seq_reverse(seq):
