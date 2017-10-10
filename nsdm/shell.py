@@ -23,7 +23,8 @@ def run(command):
         print("#" + str(command), file=sys.stderr)
         print("#-----------", file=sys.stderr)
         print("#" + returnstr, file=sys.stderr)
+        return returnstr, False
     else:
         returnstr = pout.stdout.decode("UTF-8").strip()
         print(returnstr)
-    return returnstr
+        return returnstr, True
