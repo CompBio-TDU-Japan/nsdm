@@ -47,7 +47,7 @@ class Ref:
         result = []
         for v in self.variant:
             pos = int(v.pos)
-            vseq[(pos - 1)] = v.alt
+            vseq[pos - 1] = v.alt
             v.nvp = pos - int(v.start)
             v.pvp = math.ceil(v.nvp / 3)
             if v.strand == "-":
@@ -63,6 +63,9 @@ class Ref:
             seq = translate(seq)
             vseq = translate(vseq)
         for n, v in enumerate(result):
+            print(v.strand)
+            print(v.pvp)
+            print(len(vseq))
             v.palt = vseq[v.pvp]
             v.pref = seq[v.pvp]
             result[n] = v
