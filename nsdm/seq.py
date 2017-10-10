@@ -41,18 +41,19 @@ class Ref:
             start = int(x.start) - 1
         if isinstance(x.end, str):
             end = int(x.end)
+        genome = self.seq
         seq = self.seq[start:end]
-        vseq = self.seq
-        vseq = list(vseq)
+        vnseq = genome
+        vnseq = list(vseq)
         result = []
         for v in self.variant:
             pos = int(v.pos)
-            vseq[pos - 1] = v.alt
-            v.nvp = pos - int(v.start)
-            v.pvp = math.ceil(v.nvp / 3)
+            vnseq[pos - 1] = v.alt
+            v.nvp = pos - int(v.start + 1)
+            v.pvp = math.ceil(v.nvp / 3) - 1
             if v.strand == "-":
                 v.nvp = len(seq) - (v.nvp + 1)
-                v.pvp = math.ceil(v.nvp / 3)
+                v.pvp = math.ceil(v.nvp / 3) - 1
             result.append(v)
         vseq = "".join(vseq)[start:end]
 
@@ -65,6 +66,7 @@ class Ref:
         for n, v in enumerate(result):
             print(v.strand)
             print(v.pvp)
+            print(v.gene)
             print(len(vseq))
             v.palt = vseq[v.pvp]
             v.pref = seq[v.pvp]
