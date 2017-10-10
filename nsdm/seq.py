@@ -55,7 +55,7 @@ class Ref:
                 v.nvp = len(seq) - (v.nvp + 1)
                 v.pvp = math.ceil(v.nvp / 3) - 1
             result.append(v)
-        vseq = "".join(vseq)[start:end]
+        vseq = "".join(vnseq)[start:end]
 
         if self.variant[0].strand == "-":
             seq = translate(seq_reverse(seq))
