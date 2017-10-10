@@ -46,7 +46,7 @@ class Ref:
         for v in self.variant:
             pos = int(v.pos)
             v.nvp = pos - int(v.start) + 1
-            v.pvp = math.ceil(v.nop / 3)
+            v.pvp = math.ceil(v.nvp / 3)
             if v.strand == "-":
                 v.nvp = len(seq) - (v.nvp + 1)
                 v.pvp = math.ceil(v.nvp / 3)
