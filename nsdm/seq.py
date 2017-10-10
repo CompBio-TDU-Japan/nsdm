@@ -42,19 +42,30 @@ class Ref:
         if isinstance(x.end, str):
             end = int(x.end)
         seq = self.seq[start:end]
+        vseq = self.seq
+        vseq = list(vseq)
         result = []
         for v in self.variant:
             pos = int(v.pos)
+            vseq[(pos - 1)] = v.alt
             v.nvp = pos - int(v.start) + 1
             v.pvp = math.ceil(v.nvp / 3)
             if v.strand == "-":
                 v.nvp = len(seq) - (v.nvp + 1)
                 v.pvp = math.ceil(v.nvp / 3)
             result.append(v)
+        vseq = "".join(vseq)[start:end]
+
         if self.variant[0].strand == "-":
             seq = translate(seq_reverse(seq))
+            vseq = translate(seq_reverse(vseq))
         else:
             seq = translate(seq)
+            vseq = translate(vseq)
+        for n, v in enumerate(result):
+            v.palt = vseq[v.pvp]
+            v.pref = seq[v.pvp]
+            result[n] = v
         return (seq.split("*")[0], result)
 
 
