@@ -51,7 +51,7 @@ class Ref:
             v.nvp = pos - int(v.start)
             v.pvp = math.ceil(v.nvp / 3)
             if v.strand == "-":
-                v.nvp = 1 + len(seq) - (v.nvp)
+                v.nvp = len(seq) - (v.nvp + 1)
                 v.pvp = math.ceil(v.nvp / 3)
             result.append(v)
         vseq = "".join(vseq)[start:end]
