@@ -49,7 +49,7 @@ class Ref:
         for v in self.variant:
             pos = int(v.pos)
             vnseq[pos - 1] = v.alt
-            v.nvp = pos - int(v.start + 1)
+            v.nvp = pos - (int(v.start) + 1)
             v.pvp = math.ceil(v.nvp / 3) - 1
             if v.strand == "-":
                 v.nvp = len(seq) - (v.nvp + 1)
