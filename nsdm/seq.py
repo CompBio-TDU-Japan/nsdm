@@ -68,6 +68,8 @@ class Ref:
         for n, v in enumerate(result):
             v.palt = vseq[v.pvp]
             v.pref = seq[v.pvp]
+            if v.palt == v.pref:
+                print(v.palt, v.pref, v.alt, v.ref)
             result[n] = v
         return (seq.split("*")[0], result)
 
