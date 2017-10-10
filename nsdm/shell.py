@@ -16,15 +16,10 @@ def run(command):
                           )
     returnstr = ""
     if pout.returncode != 0:
-        returnstr = pout.stderr.decode("UTF-8").strip()
-        print(
-            "#[info] Error! This command has stopped working.(see below)", file=sys.stderr)
-        print("#-----------", file=sys.stderr)
-        print("#" + str(command), file=sys.stderr)
-        print("#-----------", file=sys.stderr)
-        print("#" + returnstr, file=sys.stderr)
+        returnstr = "#[info] Error! This command has stopped working.(see below)\n"
+        returnstr += pout.stderr.decode("UTF-8").strip()
+        returnstr += "#" + str(command)
         return returnstr, False
     else:
         returnstr = pout.stdout.decode("UTF-8").strip()
-        print("#stdout:--------\n", returnstr)
         return returnstr, True
