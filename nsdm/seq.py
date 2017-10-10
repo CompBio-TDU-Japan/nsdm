@@ -47,6 +47,8 @@ class Ref:
         vnseq = list(vnseq)
         result = []
         for v in self.variant:
+            if v.annotation != "missense_variant":
+                continue
             pos = int(v.pos)
             vnseq[pos - 1] = v.alt
             v.nvp = pos - (int(v.start) + 1)
