@@ -44,7 +44,7 @@ class Ref:
         genome = self.seq
         seq = self.seq[start:end]
         vnseq = genome
-        vnseq = list(vseq)
+        vnseq = list(vnseq)
         result = []
         for v in self.variant:
             pos = int(v.pos)
