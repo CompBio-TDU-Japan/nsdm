@@ -56,16 +56,6 @@ class Ref:
             if v.strand == "-":
                 v.nvp = len(seq) - (v.nvp) - 1
                 v.pvp = math.ceil((v.nvp + 1) / 3) - 1
-                print(f"{v.strand}|", v.gene, v.pos)
-                compliments = {'N': 'N', 'A': 'T',
-                               'C': 'G', 'G': 'C', 'T': 'A'}
-                print(compliments[v.ref], "=>", compliments[v.alt])
-                print(translate(seq_reverse(seq))[0][v.pvp], "=>",
-                      translate(seq_reverse(vnseq[start:end]))[0][v.pvp])
-                exit()
-            print(f"{v.strand}|", v.gene, v.pos)
-            print(v.ref, "=>", v.alt)
-            print(seq[v.nvp], "=>", vnseq[pos - 1])
             result.append(v)
         vseq = "".join(vnseq)[start:end]
         if self.variant[0].strand == "-":
@@ -88,7 +78,7 @@ class Ref:
             for n, v in enumerate(result):
                 print("--")
                 print(len(seq))
-                print(v.ref, "=>", v.alt, v.pvp)
+                print(v.pvp)
                 print(len(seq), "/", seq[v.pvp], "=>",
                       len(seq), "/", vseq[v.pvp])
                 v.palt = vseq[v.pvp]
