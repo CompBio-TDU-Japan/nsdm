@@ -57,9 +57,11 @@ class Ref:
                 v.nvp = len(seq) - (v.nvp) - 1
                 v.pvp = math.ceil((v.nvp + 1) / 3) - 1
                 print(f"{v.strand}|", v.gene, v.pos)
-                print(v.ref, "=>", v.alt)
+                compliments = {'N': 'N', 'A': 'T',
+                               'C': 'G', 'G': 'C', 'T': 'A'}
+                print(compliments[v.ref], "=>", compliments[v.alt])
                 print(seq_reverse(seq)[v.nvp], "=>",
-                      seq_reverse(vnseq[start:end])[v.pvp])
+                      seq_reverse(vnseq[start:end])[v.nvp])
                 exit()
             print(f"{v.strand}|", v.gene, v.pos)
             print(v.ref, "=>", v.alt)
