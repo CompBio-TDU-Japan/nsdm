@@ -56,6 +56,9 @@ class Ref:
             if v.strand == "-":
                 v.nvp = len(seq) - (v.nvp) - 1
                 v.pvp = math.ceil((v.nvp + 1) / 3) - 1
+                print(v.ref, "=>", v.alt)
+                print(seq_reverse(seq)[v.nvp], "=>", vnseq[v.pvp])
+                exit()
             result.append(v)
         vseq = "".join(vnseq)[start:end]
         if self.variant[0].strand == "-":
