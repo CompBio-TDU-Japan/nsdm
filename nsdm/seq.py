@@ -70,7 +70,7 @@ class Ref:
             vseq, vinfov = translate(nvseq, vppos)
         else:
             seq, vinfon = translate(seq, vppos)
-            vseq, vinfov = translate(vseq.vppos)
+            vseq, vinfov = translate(vseq, vppos)
         for n, v in enumerate(result):
             v.palt = vseq[v.pvp]
             v.pref = seq[v.pvp]
