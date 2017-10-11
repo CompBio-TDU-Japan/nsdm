@@ -58,7 +58,7 @@ class Ref:
                 v.pvp = math.ceil(v.nvp / 3) - 1
             result.append(v)
         vseq = "".join(vnseq)[start:end]
-        for v in self.variant:
+        for v in result:
             print("--")
             print(v.ref, "=>", v.alt)
             print(seq[v.nvp], "=>", vseq[v.nvp])
