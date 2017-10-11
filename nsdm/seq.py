@@ -77,6 +77,7 @@ class Ref:
         if result[0].strand == "-":
             for n, v in enumerate(result):
                 print("--")
+                print(v.gene)
                 print(len(seq))
                 print(v.pvp)
                 print(len(seq), "/", seq[v.pvp], "=>",
