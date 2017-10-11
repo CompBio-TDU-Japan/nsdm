@@ -55,7 +55,7 @@ class Ref:
             v.pvp = math.ceil(v.nvp / 3) - 1
             print("==before--")
             print(v.ref, "=>", v.alt)
-            print(seq[v.nvp], "=>", vnseq[pos - 1])
+            print(genome[v.nvp], "=>", vnseq[pos - 1])
             if v.strand == "-":
                 v.nvp = len(seq) - (v.nvp + 1)
                 v.pvp = math.ceil(v.nvp / 3) - 1
@@ -64,10 +64,10 @@ class Ref:
         if self.variant[0].strand == "-":
             seq = seq_reverse(seq)
             vseq = seq_reverse(vseq)
-        for v in result:
-            print("==result--")
-            print(v.ref, "=>", v.alt)
-            print(seq[v.nvp], "=>", vseq[v.nvp])
+#        for v in result:
+#            print("==result--")
+#            print(v.ref, "=>", v.alt)
+#            print(seq[v.nvp], "=>", vseq[v.nvp])
         nseq = seq
         nvseq = vseq
         vppos = [x.pvp for x in result]
