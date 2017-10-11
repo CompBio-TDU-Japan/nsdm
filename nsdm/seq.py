@@ -77,7 +77,7 @@ class Ref:
         for n, v in enumerate(result):
             print("--")
             print(v.ref, "=>", v.alt, v.pvp)
-            print(seq[v.nvp], "=>", vseq[v.nvp])
+            print(len(seq), "/", seq[v.nvp], "=>", len(seq), "/", vseq[v.nvp])
             v.palt = vseq[v.pvp]
             v.pref = seq[v.pvp]
             v.nseq = nseq
