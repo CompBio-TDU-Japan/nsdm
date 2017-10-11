@@ -53,7 +53,7 @@ class Ref:
             vnseq[pos - 1] = v.alt
             v.nvp = pos - (int(start) + 1)
             v.pvp = math.ceil((v.nvp + 1) / 3) - 1
-            print(v.strand)
+            print(f"{v.strand}|")
             print(v.ref, "=>", v.alt)
             print(seq[v.nvp], "=>", vnseq[pos - 1])
             if v.strand == "-":
