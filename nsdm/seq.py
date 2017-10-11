@@ -78,12 +78,12 @@ class Ref:
             print("--")
             print(v.ref, "=>", v.alt)
             print(seq[v.nvp], "=>", vseq[v.nvp])
-            print(v.change)
             v.palt = vseq[v.pvp]
             v.pref = seq[v.pvp]
             v.nseq = nseq
             v.nvseq = nvseq
             v.change = [x for x in zip(vinfon, vinfov)]
+            print(v.change)
             result[n] = v
         return (seq.split("*")[0], result)
 
