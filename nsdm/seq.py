@@ -86,6 +86,7 @@ class Ref:
             v.change = [x for x in zip(vinfon, vinfov)]
             print(v.change)
             result[n] = v
+            exit()
         return (seq.split("*")[0], result)
 
 
