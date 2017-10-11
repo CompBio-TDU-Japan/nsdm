@@ -66,7 +66,7 @@ class Ref:
         vppos = [x.pvp for x in result]
         vinfov = []
         vinfon = []
-        if self.variant[0].strand == "-":
+        if result[0].strand == "-":
             nseq = seq_reverse(seq)
             nvseq = seq_reverse(vseq)
             seq, vinfon = translate(nseq, vppos)
