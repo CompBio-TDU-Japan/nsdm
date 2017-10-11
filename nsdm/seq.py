@@ -76,6 +76,7 @@ class Ref:
             vseq, vinfov = translate(vseq, vppos)
         for n, v in enumerate(result):
             print("--")
+            print(len(seq))
             print(v.ref, "=>", v.alt, v.pvp)
             print(len(seq), "/", seq[v.nvp], "=>", len(seq), "/", vseq[v.nvp])
             v.palt = vseq[v.pvp]
