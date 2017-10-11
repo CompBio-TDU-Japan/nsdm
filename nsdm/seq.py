@@ -74,20 +74,12 @@ class Ref:
             vseq, vinfov = translate(vseq, vppos)
         if result[0].strand == "-":
             for n, v in enumerate(result):
-                print("--")
-                print(v.gene)
-                print(len(seq))
-                print(v.pvp)
-                print(len(seq), "/", seq[v.pvp], "=>",
-                      len(seq), "/", vseq[v.pvp])
                 v.palt = vseq[v.pvp]
                 v.pref = seq[v.pvp]
                 v.nseq = nseq
                 v.nvseq = nvseq
                 v.change = [x for x in zip(vinfon, vinfov)]
-                print(v.change)
                 result[n] = v
-            exit()
         return (seq.split("*")[0], result)
 
 
