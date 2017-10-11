@@ -52,10 +52,11 @@ class Ref:
             pos = int(v.pos)
             vnseq[pos - 1] = v.alt
             v.nvp = pos - (int(start) + 1)
-            v.pvp = math.ceil((v.nvp - 1) / 3)
+            v.pvp = math.ceil((v.nvp + 1) / 3) - 1
             if v.strand == "-":
-                v.nvp = len(seq) - (v.nvp + 1)
-                v.pvp = math.ceil((v.nvp - 1) / 3)
+                v.nvp = len(seq) - (v.nvp) - 1
+                v.pvp = math.ceil((v.nvp + 1) / 3) - 1
+
             result.append(v)
         vseq = "".join(vnseq)[start:end]
         if self.variant[0].strand == "-":
