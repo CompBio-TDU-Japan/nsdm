@@ -55,7 +55,7 @@ class Ref:
             v.pvp = math.ceil(v.nvp / 3) - 1
             print("==before--")
             print(v.ref, "=>", v.alt)
-            print(genome[v.nvp], "=>", vnseq[pos - 1])
+            print(genome[pos - 1], "=>", vnseq[pos - 1])
             if v.strand == "-":
                 v.nvp = len(seq) - (v.nvp + 1)
                 v.pvp = math.ceil(v.nvp / 3) - 1
