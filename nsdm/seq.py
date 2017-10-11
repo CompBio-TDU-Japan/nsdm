@@ -52,7 +52,7 @@ class Ref:
             pos = int(v.pos)
             print("--")
             print(pos)
-            print(vnseq[pos - 1], v.ref, v.alt)
+            print(vnseq[pos - 1], "==", v.ref, "=>", v.alt)
             vnseq[pos - 1] = v.alt
             v.nvp = pos - (int(v.start) + 1)
             v.pvp = math.ceil(v.nvp / 3) - 1
