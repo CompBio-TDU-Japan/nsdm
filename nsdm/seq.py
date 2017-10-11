@@ -50,6 +50,9 @@ class Ref:
             if v.annotation != "missense_variant":
                 continue
             pos = int(v.pos)
+            print("--")
+            print(pos)
+            print(vnseq[pos - 1], v.ref, v.alt)
             vnseq[pos - 1] = v.alt
             v.nvp = pos - (int(v.start) + 1)
             v.pvp = math.ceil(v.nvp / 3) - 1
@@ -77,8 +80,6 @@ class Ref:
             v.nseq = nseq
             v.nvseq = nvseq
             v.change = [x for x in zip(vinfon, vinfov)]
-            if v.palt == v.pref:
-                print(v.palt, v.pref, v.alt, v.ref)
             result[n] = v
         return (seq.split("*")[0], result)
 
