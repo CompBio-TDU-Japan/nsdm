@@ -53,11 +53,15 @@ class Ref:
             vnseq[pos - 1] = v.alt
             v.nvp = pos - (int(start) + 1)
             v.pvp = math.ceil((v.nvp + 1) / 3) - 1
+            print(v.strand)
+            print(v.ref, "=>", v.alt)
+            print(seq[v.nvp], "=>", vnseq[pos - 1])
             if v.strand == "-":
                 v.nvp = len(seq) - (v.nvp) - 1
                 v.pvp = math.ceil((v.nvp + 1) / 3) - 1
+                print(v.strand)
                 print(v.ref, "=>", v.alt)
-                print(seq_reverse(seq)[v.nvp], "=>", vnseq[v.pvp])
+                print(seq_reverse(seq)[v.nvp], "=>", vnseq[start:end][v.pvp])
                 exit()
             result.append(v)
         vseq = "".join(vnseq)[start:end]
