@@ -54,6 +54,7 @@ class Ref:
             print(pos)
             print(vnseq[pos - 1], "==", v.ref, "=>", v.alt)
             vnseq[pos - 1] = v.alt
+            print(vnseq[pos - 1], "==", v.alt, "<=", v.ref)
             v.nvp = pos - (int(v.start) + 1)
             v.pvp = math.ceil(v.nvp / 3) - 1
             if v.strand == "-":
