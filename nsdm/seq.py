@@ -53,7 +53,7 @@ class Ref:
                 continue
             pos = int(v.pos)
             vnseq[pos - 1] = v.alt
-            v.nvp = pos - (int(v.start) + 1)
+            v.nvp = pos - (int(start) + 1)
             v.pvp = math.ceil(v.nvp / 3) - 1
             print("==before--", v.gene, v.pos)
             print(v.ref, "=>", v.alt)
