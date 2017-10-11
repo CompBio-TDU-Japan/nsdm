@@ -58,6 +58,7 @@ class Ref:
                 v.pvp = math.ceil((v.nvp + 1) / 3) - 1
             result.append(v)
         vseq = "".join(vnseq)[start:end]
+        print(result)
         if result[0].strand == "-":
             seq = seq_reverse(seq)
             vseq = seq_reverse(vseq)
