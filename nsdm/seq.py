@@ -58,19 +58,17 @@ class Ref:
                 v.pvp = math.ceil((v.nvp + 1) / 3) - 1
             result.append(v)
         vseq = "".join(vnseq)[start:end]
-        if self.variant[0].strand == "-":
+        if result[0].strand == "-":
             seq = seq_reverse(seq)
             vseq = seq_reverse(vseq)
+        vppos = [x.pvp for x in result]
         nseq = seq
         nvseq = vseq
-        vppos = [x.pvp for x in result]
         vinfov = []
         vinfon = []
         if result[0].strand == "-":
-            nseq = seq_reverse(seq)
-            nvseq = seq_reverse(vseq)
-            seq, vinfon = translate(nseq, vppos)
-            vseq, vinfov = translate(nvseq, vppos)
+            seq, vinfon = translate(seq, vppos)
+            vseq, vinfov = translate(vseq, vppos)
         else:
             seq, vinfon = translate(seq, vppos)
             vseq, vinfov = translate(vseq, vppos)
