@@ -61,6 +61,10 @@ class Ref:
         if self.variant[0].strand == "-":
             seq = seq_reverse(seq)
             vseq = seq_reverse(vseq)
+        for v in result:
+            print(v.ref, "=>", v.alt)
+            print(seq[v.nvp], "=>", vseq[v.nvp])
+        exit()
         nseq = seq
         nvseq = vseq
         vppos = [x.pvp for x in result]
