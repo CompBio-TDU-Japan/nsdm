@@ -63,7 +63,7 @@ class Ref:
             print(f"{v.strand}|", v.gene, v.pos)
             print(v.ref, "=>", v.alt)
             print(seq[v.nvp], "=>", vnseq[pos - 1])
-                exit()
+            exit()
             result.append(v)
         vseq = "".join(vnseq)[start:end]
         if self.variant[0].strand == "-":
