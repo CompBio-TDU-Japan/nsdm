@@ -60,8 +60,8 @@ class Ref:
                 compliments = {'N': 'N', 'A': 'T',
                                'C': 'G', 'G': 'C', 'T': 'A'}
                 print(compliments[v.ref], "=>", compliments[v.alt])
-                print(seq_reverse(seq)[v.nvp], "=>",
-                      seq_reverse(vnseq[start:end])[v.nvp])
+                print(translate(seq_reverse(seq))[0][v.pvp], "=>",
+                      translate(seq_reverse(vnseq[start:end]))[0][v.pvp])
                 exit()
             print(f"{v.strand}|", v.gene, v.pos)
             print(v.ref, "=>", v.alt)
@@ -129,4 +129,4 @@ def translate(seq, variant=[]):
                     variants.append(s + "|" + str(n))
                 ret = ret + "X"
                 break
-    return ret, variants
+    return (ret, variants)
