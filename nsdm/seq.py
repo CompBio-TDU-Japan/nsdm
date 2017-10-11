@@ -55,9 +55,10 @@ class Ref:
             vnseq[pos - 1] = v.alt
             v.nvp = pos - (int(v.start) + 1)
             v.pvp = math.ceil(v.nvp / 3) - 1
-            print("==before--", v.gene)
+            print("==before--", v.gene, v.pos)
             print(v.ref, "=>", v.alt)
             print(genome[pos - 1], "=>", vnseq[pos - 1])
+            print(seq[v.nvp], "=>", vnseq[pos - 1])
             if v.strand == "-":
                 v.nvp = len(seq) - (v.nvp + 1)
                 v.pvp = math.ceil(v.nvp / 3) - 1
@@ -67,7 +68,7 @@ class Ref:
             seq = seq_reverse(seq)
             vseq = seq_reverse(vseq)
         for v in result:
-            print("==result--", v.gene)
+            print("==result--", v.gene, v.pos)
             print(v.ref, "=>", v.alt)
             print(seq[v.nvp], "=>", vseq[v.nvp])
         exit()
