@@ -103,7 +103,7 @@ def translate(seq, variant=[]):
         for (i1, i2, i3, p) in zip(Base1, Base2, Base3, AAs):
             if s == i1 + i2 + i3:
                 if n in variant:
-                    variants.append(s + "|" + str(n))
+                    variants.append(s + "|" + str(n) + "|" + p)
                 ret = ret + p
                 break
             elif re.match(pattern, s):
