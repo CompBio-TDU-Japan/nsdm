@@ -58,16 +58,25 @@ class Ref:
                 v.pvp = math.ceil(v.nvp / 3) - 1
             result.append(v)
         vseq = "".join(vnseq)[start:end]
-
+        nseq = seq
+        nvseq = vseq
+        vppos = [x.pvp for x in result]
+        vinfov = []
+        vinfon = []
         if self.variant[0].strand == "-":
-            seq = translate(seq_reverse(seq))
-            vseq = translate(seq_reverse(vseq))
+            nseq = seq_reverse(seq)
+            nvseq = seq_reverse(vseq)
+            seq, vinfon = translate(nseq, vppos)
+            vseq, vinfov = translate(nvseq, vppos)
         else:
-            seq = translate(seq)
-            vseq = translate(vseq)
+            seq, vinfon = translate(seq, vppos)
+            vseq, vinfov = translate(vseq.vppos)
         for n, v in enumerate(result):
             v.palt = vseq[v.pvp]
             v.pref = seq[v.pvp]
+            v.nseq = nseq
+            v.nvseq = nvseq
+            v.change = [x for x in zip(vinfon, vinfov)]
             if v.palt == v.pref:
                 print(v.palt, v.pref, v.alt, v.ref)
             result[n] = v
@@ -80,7 +89,7 @@ def seq_reverse(seq):
     return ret
 
 
-def translate(seq):
+def translate(seq, variant=[]):
     pattern = re.compile(r"N")
     AAs = "FFLLSSSSYY**CC*WLLLLPPPPHHQQRRRRIIIMTTTTNNKKSSRRVVVVAAAADDEEGGGG"
     Base1 = "TTTTTTTTTTTTTTTTCCCCCCCCCCCCCCCCAAAAAAAAAAAAAAAAGGGGGGGGGGGGGGGG"
@@ -88,12 +97,17 @@ def translate(seq):
     Base3 = "TCAGTCAGTCAGTCAGTCAGTCAGTCAGTCAGTCAGTCAGTCAGTCAGTCAGTCAGTCAGTCAG"
     target = re.findall('.' * 3, seq)
     ret = ""
-    for s in target:
+    variants = []
+    for n, s in enumerate(target):
         for (i1, i2, i3, p) in zip(Base1, Base2, Base3, AAs):
             if s == i1 + i2 + i3:
+                if n in variant:
+                    variants.append(s + "|" + str(n))
                 ret = ret + p
                 break
             elif re.match(pattern, s):
+                if n in variant:
+                    variants.append(s + "|" + str(n))
                 ret = ret + "X"
                 break
-    return ret
+    return ret, variants
