@@ -8,8 +8,9 @@ def run(command):
     if isinstance(command, str):
         command = [command]
     elif isinstance(command, list):
-        command = [*command]
-    # pout = subprocess.run(["/bin/bash", "-c"] + [command],
+        pass
+    else:
+        return "invalid input:" + str(command), False
     pout = subprocess.run(command,
                           stdout=subprocess.PIPE,
                           stderr=subprocess.PIPE,
