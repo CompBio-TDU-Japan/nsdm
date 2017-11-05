@@ -6,8 +6,9 @@ import sys
 
 def run(command):
     if isinstance(command, str):
-        command = ["bash", "-c"] + [x.strip()
-                                    for x in command.split("\n") if x != ""]
+        string = command.replace("\n", " ")
+        command = ["bash", "-c"] + [string]
+
     elif isinstance(command, list):
         pass
     else:
