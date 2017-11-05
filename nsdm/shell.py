@@ -17,13 +17,15 @@ def run(command):
                           stdout=subprocess.PIPE,
                           stderr=subprocess.PIPE,
                           )
-    returnstr = ""
+    ret = dict()
     if pout.returncode != 0:
         returnstr = "#[info] Error! This command has stopped working.(see below)\n"
-        returnstr += pout.stderr.decode("UTF-8").strip()
-        returnstr += "#" + str(command)
-        return "", returnstr
+        ret["stdout"] = pout.stdout.decode("UTF-8").strip()
+        ret["stderr"] = returnstr + pout.stdout.decode("UTF-8").strip()
+        ret["returncode"] = pout.returncode
+        return ret
     else:
-        stdoutstr = pout.stdout.decode("UTF-8").strip()
-        stderrstr = pout.stdout.decode("UTF-8").strip()
-        return stdoutstr, stderrstr
+        ret["stdout"] = pout.stdout.decode("UTF-8").strip()
+        ret["stderr"] = pout.stdout.decode("UTF-8").strip()
+        ret["returncode"] = pout.returncode
+        return ret
