@@ -59,7 +59,7 @@ class Ref:
             result.append(v)
         vseq = "".join(base_vpseq_genome)[start:end]
         if len(result) == 0:
-            return (seq.split("*")[0], result)
+            return result
         if result[0].strand == "-":
             seq = seq_reverse(seq)
             vseq = seq_reverse(vseq)
