@@ -58,6 +58,7 @@ class Ref:
                 v.pvp = math.ceil((v.nvp + 1) / 3) - 1
             result.append(v)
         vseq = "".join(vnseq)[start:end]
+        [print(x.__dict__) for x in self.variant]
         [print(vseq[x.nvp]) for x in result]
         if len(result) == 0:
             return (seq.split("*")[0], result)
