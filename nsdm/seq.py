@@ -83,7 +83,7 @@ class Ref:
             v.vprotein = vseq.split("*")[0]
             v.codon_aa = [x for x in zip(vinfon, vinfov)]
             result[n] = v
-        return (seq.split("*")[0], result)
+        return result
 
 
 def seq_reverse(seq):
