@@ -43,6 +43,7 @@ class Ref:
             end = int(x.end)
         genome = self.seq
         seq = self.seq[start:end]
+        print(x.__dict__)
         print(seq)
         exit()
         base_vpseq_genome = genome
