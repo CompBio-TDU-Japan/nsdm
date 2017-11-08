@@ -43,8 +43,6 @@ class Ref:
             end = int(x.end)
         genome = self.seq
         seq = self.seq[start:end]
-        print(x.__dict__)
-        print(seq)
         base_vpseq_genome = genome
         base_vpseq_genome = list(base_vpseq_genome)
         result = []
@@ -67,9 +65,11 @@ class Ref:
         if result[0].strand == "-":
             seq = seq_reverse(seq)
             vseq = seq_reverse(vseq)
+
         [print(x.__dict__)
          for x in self.variant if x.annotation == "missense_variant"]
         [print(vseq[x.nvp]) for x in result]
+        print(vseq)
         exit()
         vppos = [x.pvp for x in result]
         nseq = seq
