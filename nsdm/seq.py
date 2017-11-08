@@ -50,6 +50,7 @@ class Ref:
         result = []
         print("debug")
         for v in self.variant:
+            print(v.annotation)
             if v.annotation != "missense_variant":
                 continue
             pos = int(v.pos)
