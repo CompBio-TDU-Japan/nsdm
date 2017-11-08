@@ -34,8 +34,6 @@ class Ref:
         return (seq.split("*")[0], vseq.split("*")[0])
 
     def provean(self):
-        print(self.variant)
-        [print(x.__dict__) for x in self.variant]
         x = self.variant[0]
         start = 0
         end = 0
@@ -48,12 +46,12 @@ class Ref:
         vnseq = genome
         vnseq = list(vnseq)
         result = []
-        print("debug")
         for v in self.variant:
-            print(v.annotation)
             if v.annotation != "missense_variant":
                 continue
             pos = int(v.pos)
+            print(v.annotation)
+            [print(x.__dict__) for x in self.variant]
             print(vnseq[pos - 1])
             vnseq[pos - 1] = v.alt
             v.nvp = pos - (int(start) + 1)
