@@ -79,7 +79,7 @@ class Ref:
             v.pref = seq[v.pvp]
             v.nseq = nseq
             v.nvseq = nvseq
-            v.change = [x for x in zip(vinfon, vinfov)]
+            v.translate = [x for x in zip(vinfon, vinfov)]
             result[n] = v
         return (seq.split("*")[0], result)
 
