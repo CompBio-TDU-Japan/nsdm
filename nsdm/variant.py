@@ -33,7 +33,7 @@ def allcheck(ref_file, vcfdir, gff_file):
                         vinfo.pvp,
                         vinfo.pref,
                         vinfo.palt,
-                        vinfo.pos,
+                        str(vinfo.pos),
                         vinfo.ref,
                         vinfo.alt,
                     ]))
