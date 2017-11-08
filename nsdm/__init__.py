@@ -2,3 +2,4 @@
 from . import fileparse
 from . import shell
 from . import seq
+from . import variant
