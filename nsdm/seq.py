@@ -50,7 +50,9 @@ class Ref:
             if v.annotation != "missense_variant":
                 continue
             pos = int(v.pos)
+            print(vnseq[pos - 1])
             vnseq[pos - 1] = v.alt
+            print(vnseq[pos - 1])
             v.nvp = pos - (int(start) + 1)
             v.pvp = math.ceil((v.nvp + 1) / 3) - 1
             if v.strand == "-":
