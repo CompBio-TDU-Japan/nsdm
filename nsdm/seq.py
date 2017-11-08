@@ -35,6 +35,8 @@ class Ref:
 
     def provean(self):
         x = self.variant[0]
+        print(x)
+        exit()
         start = 0
         end = 0
         if isinstance(x.start, str):
