@@ -60,7 +60,7 @@ class Ref:
         vseq = "".join(vnseq)[start:end]
         [print(x.__dict__)
          for x in self.variant if x.annotation == "missense_variant"]
-        [print(vseq[x.nvp]) for x in result]
+        [print(vseq[x.nvp - 1:x.nvp + 1]) for x in result]
         if len(result) == 0:
             return (seq.split("*")[0], result)
         if result[0].strand == "-":
