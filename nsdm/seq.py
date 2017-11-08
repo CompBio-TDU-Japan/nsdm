@@ -48,6 +48,7 @@ class Ref:
         vnseq = genome
         vnseq = list(vnseq)
         result = []
+        print("debug")
         for v in self.variant:
             if v.annotation != "missense_variant":
                 continue
