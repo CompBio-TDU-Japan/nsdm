@@ -34,6 +34,7 @@ class Ref:
         return (seq.split("*")[0], vseq.split("*")[0])
 
     def provean(self):
+        print(self.variant)
         [print(x.__dict__) for x in self.variant]
         x = self.variant[0]
         exit()
