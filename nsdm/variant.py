@@ -30,7 +30,7 @@ def allcheck(ref_file, vcfdir, gff_file):
                 if vinfo.pref == vinfo.palt:
                     print("\t".join([
                         vinfo.gene,
-                        vinfo.pvp,
+                        str(vinfo.pvp),
                         vinfo.pref,
                         vinfo.palt,
                         str(vinfo.pos),
