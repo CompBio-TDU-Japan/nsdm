@@ -28,6 +28,7 @@ def allcheck(ref_file, vcfdir, gff_file):
         if len(variantlist) > 0:
             for vinfo in variantlist:
                 if vinfo.pref == vinfo.palt:
+                    print(vinfo.alt)
                     print("\t".join([
                         vinfo.gene,
                         vinfo.pvp,
