@@ -38,25 +38,24 @@ class Ref:
         start = 0
         end = 0
         if isinstance(x.start, str):
-            start = int(x.start)
+            start = int(x.start) - 1
         if isinstance(x.end, str):
             end = int(x.end)
         genome = self.seq
         seq = self.seq[start:end]
         print(x.__dict__)
         print(seq)
-        exit()
         base_vpseq_genome = genome
         base_vpseq_genome = list(base_vpseq_genome)
         result = []
         for v in self.variant:
             if v.annotation != "missense_variant":
                 continue
-            pos = int(v.pos)
-            print(base_vpseq_genome[pos - 1])
-            base_vpseq_genome[pos - 1] = v.alt
-            print(base_vpseq_genome[pos - 1])
-            v.nvp = pos - (int(start) + 1)
+            pos = int(v.pos) - 1
+            print(base_vpseq_genome[pos])
+            base_vpseq_genome[pos] = v.alt
+            print(base_vpseq_genome[pos])
+            v.nvp = pos - start
             v.pvp = math.ceil((v.nvp + 1) / 3) - 1
             if v.strand == "-":
                 v.nvp = len(seq) - (v.nvp) - 1
