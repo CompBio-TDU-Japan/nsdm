@@ -37,7 +37,6 @@ class Ref:
         print(self.variant)
         [print(x.__dict__) for x in self.variant]
         x = self.variant[0]
-        exit()
         start = 0
         end = 0
         if isinstance(x.start, str):
