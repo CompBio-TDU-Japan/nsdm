@@ -58,14 +58,14 @@ class Ref:
                 v.pvp = math.ceil((v.nvp + 1) / 3) - 1
             result.append(v)
         vseq = "".join(vnseq)[start:end]
-        [print(x.__dict__)
-         for x in self.variant if x.annotation == "missense_variant"]
-        [print(vseq[x.nvp - 2:x.nvp + 2]) for x in result]
         if len(result) == 0:
             return (seq.split("*")[0], result)
         if result[0].strand == "-":
             seq = seq_reverse(seq)
             vseq = seq_reverse(vseq)
+        [print(x.__dict__)
+         for x in self.variant if x.annotation == "missense_variant"]
+        [print(vseq[x.nvp - 2:x.nvp + 2]) for x in result]
         vppos = [x.pvp for x in result]
         nseq = seq
         nvseq = vseq
