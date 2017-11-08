@@ -43,23 +43,23 @@ class Ref:
             end = int(x.end)
         genome = self.seq
         seq = self.seq[start:end]
-        vnseq = genome
-        vnseq = list(vnseq)
+        base_vpseq_genome = genome
+        base_vpseq_genome = list(base_vpseq_genome)
         result = []
         for v in self.variant:
             if v.annotation != "missense_variant":
                 continue
             pos = int(v.pos)
-            print(vnseq[pos - 1])
-            vnseq[pos - 1] = v.alt
-            print(vnseq[pos - 1])
+            print(base_vpseq_genome[pos - 1])
+            base_vpseq_genome[pos - 1] = v.alt
+            print(base_vpseq_genome[pos - 1])
             v.nvp = pos - (int(start) + 1)
             v.pvp = math.ceil((v.nvp + 1) / 3) - 1
             if v.strand == "-":
                 v.nvp = len(seq) - (v.nvp) - 1
                 v.pvp = math.ceil((v.nvp + 1) / 3) - 1
             result.append(v)
-        vseq = "".join(vnseq)[start:end]
+        vseq = "".join(base_vpseq_genome)[start:end]
         if len(result) == 0:
             return (seq.split("*")[0], result)
         if result[0].strand == "-":
@@ -67,7 +67,8 @@ class Ref:
             vseq = seq_reverse(vseq)
         [print(x.__dict__)
          for x in self.variant if x.annotation == "missense_variant"]
-        [print(vseq[x.nvp - 2:x.nvp + 2]) for x in result]
+        [print(vseq[x.nvp]) for x in result]
+        exit()
         vppos = [x.pvp for x in result]
         nseq = seq
         nvseq = vseq
