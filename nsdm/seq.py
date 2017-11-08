@@ -38,11 +38,13 @@ class Ref:
         start = 0
         end = 0
         if isinstance(x.start, str):
-            start = int(x.start) - 1
+            start = int(x.start)
         if isinstance(x.end, str):
             end = int(x.end)
         genome = self.seq
         seq = self.seq[start:end]
+        print(seq)
+        exit()
         base_vpseq_genome = genome
         base_vpseq_genome = list(base_vpseq_genome)
         result = []
