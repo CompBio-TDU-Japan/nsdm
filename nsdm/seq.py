@@ -52,7 +52,7 @@ class Ref:
             pos = int(v.pos)
             print(v.annotation)
             [print(x.__dict__) for x in self.variant]
-            print(vnseq[pos - 1])
+            print(vnseq[pos - 1], v.alt)
             vnseq[pos - 1] = v.alt
             v.nvp = pos - (int(start) + 1)
             v.pvp = math.ceil((v.nvp + 1) / 3) - 1
