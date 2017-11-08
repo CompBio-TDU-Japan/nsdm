@@ -14,9 +14,12 @@ def allcheck(ref_file, vcfdir, gff_file):
 
     header = "\t".join([
         "gene",
-        "ref",
-        "alt",
-        "pos_Pseq",
+        "pos_protein",
+        "ref_protein",
+        "alt_protein",
+        "pos_genome",
+        "ref_genome",
+        "alt_genome",
     ])
     print(header)
     for k, v in summary.items():
@@ -25,11 +28,12 @@ def allcheck(ref_file, vcfdir, gff_file):
         if len(variantlist) > 0:
             for vinfo in variantlist:
                 if vinfo.pref == vinfo.palt:
-                    print(vinfo.gene,
-                          "\t",
-                          vinfo.pref,
-                          "\t",
-                          vinfo.palt,
-                          "\t",
-                          vinfo.pvp,
-                          )
+                    print("\t".join([
+                        vinfo.gene,
+                        vinfo.pvp,
+                        vinfo.pref,
+                        vinfo.palt,
+                        vinfo.pos,
+                        vinfo.ref,
+                        vinfo.alt,
+                    ]))
