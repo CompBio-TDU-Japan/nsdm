@@ -50,9 +50,7 @@ class Ref:
             if v.annotation != "missense_variant":
                 continue
             pos = int(v.pos) - 1
-            print(base_vpseq_genome[pos])
             base_vpseq_genome[pos] = v.alt
-            print(base_vpseq_genome[pos])
             v.nvp = pos - start
             v.pvp = math.ceil((v.nvp + 1) / 3) - 1
             if v.strand == "-":
@@ -65,12 +63,6 @@ class Ref:
         if result[0].strand == "-":
             seq = seq_reverse(seq)
             vseq = seq_reverse(vseq)
-
-        [print(x.__dict__)
-         for x in self.variant if x.annotation == "missense_variant"]
-        [print(vseq[x.nvp]) for x in result]
-        print(vseq)
-        exit()
         vppos = [x.pvp for x in result]
         nseq = seq
         nvseq = vseq
