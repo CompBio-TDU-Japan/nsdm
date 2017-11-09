@@ -23,16 +23,14 @@ class Vcf:
         # 'SNPEFF_EXON_ID', 'SNPEFF_FUNCTIONAL_CLASS',
         # 'SNPEFF_GENE_BIOTYPE', 'SNPEFF_GENE_NAME',
         # 'SNPEFF_IMPACT', 'SNPEFF_TRANSCRIPT_ID', 'SOR'
-        if ("SNPEFF_FUNCTIONAL_CLASS" in data.INFO) is False:
-            return None
         self.info = data.INFO
         self.alt = str(data.ALT[0])
         self.ref = data.REF
         self.pos = str(data.POS)
-        self.annotation = data.INFO["SNPEFF_FUNCTIONAL_CLASS"]
-        self.impact = data.INFO["SNPEFF_IMPACT"]
-        self.gene = data.INFO["SNPEFF_GENE_NAME"]
-        self.feature = data.INFO["SNPEFF_TRANSCRIPT_ID"]
+        self.annotation = data.INFO.get("SNPEFF_FUNCTIONAL_CLASS", None)
+        self.impact = data.INFO.get("SNPEFF_IMPACT", None)
+        self.gene = data.INFO.get("SNPEFF_GENE_NAME", None)
+        self.feature = data.INFO.get("SNPEFF_TRANSCRIPT_ID", None)
         vid = (self.alt + self.ref + self.pos + self.annotation
                + self.impact + self.gene + self.feature)
         self.sha1 = hashlib.sha1(vid.encode('utf-8')).hexdigest()
@@ -56,7 +54,7 @@ def vcf_read(filename):
     vcf_r = vcf.Reader(fp)
     for v in vcf_r:
         vcfobj = Vcf(v)
-        if vcfobj is None:
+        if vcfobj.impact is None:
             continue
         if re.match(param, vcfobj.impact) is None:
             result.append(vcfobj)
