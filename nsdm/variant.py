@@ -17,12 +17,12 @@ def allcheck(ref_file, vcfdir, gff_file):
         #        aach = v.info["SNPEFF_AMINO_ACID_CHANGE"]
         print(v)
         exit()
-        if aach[0] == aach[-1]:
-            payload = "\t".join([
-                v.gene,
-                aach,
-            ])
-            print(payload)
+#        if aach[0] == aach[-1]:
+#            payload = "\t".join([
+#                v.gene,
+#                aach,
+#            ])
+#            print(payload)
 #    for k, v in summary.items():
 #        reference.variant = v
 #        variantlist = reference.provean()
