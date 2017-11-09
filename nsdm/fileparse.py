@@ -42,6 +42,7 @@ def vcf_read(filename):
     for v in vcf_r:
         print(v)
         print(v.__dict__)
+        print(v.POS)
         exit()
         vcfobj = Vcf(v)
         if re.match(param, vcfobj.impact) == None:
