@@ -9,6 +9,7 @@ def allcheck(ref_file, vcfdir, gff_file):
     summary = fileparse.v_union(variants, gff_dict)
 
     result = dict()
+    print("#", "\t".join(["gene", "change", "description"]))
     for k, variantlist in summary.items():
         description = variantlist[0].description
         for v in variantlist:
