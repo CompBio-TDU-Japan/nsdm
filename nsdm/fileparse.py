@@ -25,9 +25,6 @@ class Vcf:
 
 class Gff:
     def __init__(self, data):
-        print(data)
-        print(data.__dict__)
-        exit()
         self.start = data[3]
         self.end = data[4]
         self.strand = data[6]
@@ -43,6 +40,9 @@ def vcf_read(filename):
     fp = open(filename, "r")
     vcf_r = vcf.Reader(fp)
     for v in vcf_r:
+        print(v)
+        print(v.__dict__)
+        exit()
         vcfobj = Vcf(v)
         if re.match(param, vcfobj.impact) == None:
             result.append(vcfobj)
