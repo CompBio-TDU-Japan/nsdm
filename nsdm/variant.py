@@ -13,6 +13,7 @@ def allcheck(ref_file, vcfdir, gff_file):
         "aa_change",
         "impact",
         "annotation",
+        "description",
     ])
     print(header)
     for k, variantlist in summary.items():
@@ -25,6 +26,7 @@ def allcheck(ref_file, vcfdir, gff_file):
                 aach,
                 v.annotation,
                 v.impact,
+                v.description,
             ])
             if v.annotation == "MISSENSE":
                 if aach[0] == aach[-1]:
