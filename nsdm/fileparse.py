@@ -24,7 +24,7 @@ class Vcf:
         # 'SNPEFF_GENE_BIOTYPE', 'SNPEFF_GENE_NAME',
         # 'SNPEFF_IMPACT', 'SNPEFF_TRANSCRIPT_ID', 'SOR'
         if ("SNPEFF_FUNCTIONAL_CLASS" in data.INFO) is False:
-            return False
+            return None
         self.info = data.INFO
         self.alt = str(data.ALT[0])
         self.ref = data.REF
@@ -56,7 +56,7 @@ def vcf_read(filename):
     vcf_r = vcf.Reader(fp)
     for v in vcf_r:
         vcfobj = Vcf(v)
-        if vcfobj is False:
+        if vcfobj is None:
             continue
         if re.match(param, vcfobj.impact) is None:
             result.append(vcfobj)
