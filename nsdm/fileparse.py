@@ -12,16 +12,14 @@ class Vcf:
     def __init__(self, data):
         #'CHROM', 'POS', 'ID', 'REF', 'ALT', 'QUAL', 'FILTER', 'INFO', 'FORMAT', 'start', 'end', 'alleles', 'samples', '_sample_indexes', 'affected_start', 'affected_end'
         # INFO:'AC', 'AF', 'AN', 'BaseQRankSum', 'ClippingRankSum', 'DP', 'FS', 'MLEAC', 'MLEAF', 'MQ', 'MQRankSum', 'QD', 'ReadPosRankSum', 'SNPEFF_AMINO_ACID_CHANGE', 'SNPEFF_CODON_CHANGE', 'SNPEFF_EFFECT', 'SNPEFF_EXON_ID', 'SNPEFF_FUNCTIONAL_CLASS', 'SNPEFF_GENE_BIOTYPE', 'SNPEFF_GENE_NAME', 'SNPEFF_IMPACT', 'SNPEFF_TRANSCRIPT_ID', 'SOR'
-        info = data.INFO
-        print(data.ALT)
-        exit()
+        self.info = data.INFO
         self.alt = str(data.ALT[0])
         self.ref = data.REF
         self.pos = str(data.POS)
-        self.annotation = info[1]
-        self.impact = info[2]
-        self.gene = info[4]
-        self.feature = info[6].split(".")[0]
+        self.annotation = data.INFO["SNPEFF_FUNCTIONAL_CLASS"]
+        self.impact = data.INFO["SNPEFF_IMPACT"]
+        self.gene = data.INFO["SNPEFF_GENE_NAME"]
+        self.feature = data.INFO["SNPEFF_TRANSCRIPT_ID"]
         vid = (self.alt + self.ref + self.pos + self.annotation
                + self.impact + self.gene + self.feature)
         self.sha1 = hashlib.sha1(vid.encode('utf-8')).hexdigest()
