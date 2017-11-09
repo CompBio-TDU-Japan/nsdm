@@ -13,9 +13,10 @@ def allcheck(ref_file, vcfdir, gff_file):
         "aa_change",
     ])
     print(header)
-    for k, v in summary.items():
+    for k, variantlist in summary.items():
         #        aach = v.info["SNPEFF_AMINO_ACID_CHANGE"]
-        print(k, v)
+        for v in variantlist:
+            print(v.info)
         exit()
 #        if aach[0] == aach[-1]:
 #            payload = "\t".join([
