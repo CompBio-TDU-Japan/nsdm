@@ -15,6 +15,7 @@ class Vcf:
         try:
             print(data.INFO["SNPEFF_FUNCTIONAL_CLASS"])
         except:
+            print(data.__dict__)
             print(data.INFO)
             exit()
 
