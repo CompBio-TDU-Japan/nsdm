@@ -14,16 +14,16 @@ def allcheck(ref_file, vcfdir, gff_file):
     ])
     print(header)
     for k, variantlist in summary.items():
-        #        aach = v.info["SNPEFF_AMINO_ACID_CHANGE"]
         for v in variantlist:
-            print(v.info)
-        exit()
-#        if aach[0] == aach[-1]:
-#            payload = "\t".join([
-#                v.gene,
-#                aach,
-#            ])
-#            print(payload)
+            if v.info["SNPEFF_FUNCTIONAL_CLASS"] != "MISSENSE":
+                continue
+            aach = v.info["SNPEFF_AMINO_ACID_CHANGE"]
+            if aach[0] == aach[-1]:
+                payload = "\t".join([
+                    v.gene,
+                    aach,
+                ])
+                print(payload)
 #    for k, v in summary.items():
 #        reference.variant = v
 #        variantlist = reference.provean()
