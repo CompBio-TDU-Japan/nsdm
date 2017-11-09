@@ -26,6 +26,7 @@ def allcheck(ref_file, vcfdir, gff_file):
                 print("#same!" + payload)
             else:
                 print(payload)
+                print(payload, v.info["SNPEFF_EFFECT"])
 #    for k, v in summary.items():
 #        reference.variant = v
 #        variantlist = reference.provean()
