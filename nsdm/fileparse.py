@@ -10,8 +10,7 @@ param = re.compile("LOW|MODIFIER")
 
 class Vcf:
     def __init__(self, data):
-        print(data)
-        print(data.SNPEFF_FUNCTIONAL_CLASS)
+        print(data.__dict__.keys())
         exit()
         info = data.INFO["ANN"][0].split("|")
         self.alt = str(data.ALT[0])
