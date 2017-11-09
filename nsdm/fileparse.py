@@ -41,6 +41,7 @@ def vcf_read(filename):
     vcf_r = vcf.Reader(fp)
     for v in vcf_r:
         vcfobj = Vcf(v)
+        print(vcfobj.__dict__)
         if re.match(param, vcfobj.impact) == None:
             result.append(vcfobj)
     fp.close()
