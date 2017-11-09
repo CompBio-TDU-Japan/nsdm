@@ -10,10 +10,11 @@ param = re.compile("LOW|MODIFIER")
 
 class Vcf:
     def __init__(self, data):
-        "'CHROM', 'POS', 'ID', 'REF', 'ALT', 'QUAL', 'FILTER', 'INFO', 'FORMAT', 'start', 'end', 'alleles', 'samples', '_sample_indexes', 'affected_start', 'affected_end'"
-        print(data.INFO.keys())
+        #'CHROM', 'POS', 'ID', 'REF', 'ALT', 'QUAL', 'FILTER', 'INFO', 'FORMAT', 'start', 'end', 'alleles', 'samples', '_sample_indexes', 'affected_start', 'affected_end'
+        # INFO:'AC', 'AF', 'AN', 'BaseQRankSum', 'ClippingRankSum', 'DP', 'FS', 'MLEAC', 'MLEAF', 'MQ', 'MQRankSum', 'QD', 'ReadPosRankSum', 'SNPEFF_AMINO_ACID_CHANGE', 'SNPEFF_CODON_CHANGE', 'SNPEFF_EFFECT', 'SNPEFF_EXON_ID', 'SNPEFF_FUNCTIONAL_CLASS', 'SNPEFF_GENE_BIOTYPE', 'SNPEFF_GENE_NAME', 'SNPEFF_IMPACT', 'SNPEFF_TRANSCRIPT_ID', 'SOR'
+        info = data.INFO
+        print(data.ALT)
         exit()
-        info = data.INFO["ANN"][0].split("|")
         self.alt = str(data.ALT[0])
         self.ref = data.REF
         self.pos = str(data.POS)
