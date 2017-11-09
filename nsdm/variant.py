@@ -20,4 +20,4 @@ def allcheck(ref_file, vcfdir, gff_file):
                 v.annotation,
             ])
             result[k] = result.get(k, []) + [payload]
-        print(k + "\t" + result[k] + "\t" + description)
+        print(k + "\t" + str(result[k]) + "\t" + description)
