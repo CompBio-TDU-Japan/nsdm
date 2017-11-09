@@ -18,11 +18,13 @@ def allcheck(ref_file, vcfdir, gff_file):
             if v.info["SNPEFF_FUNCTIONAL_CLASS"] != "MISSENSE":
                 continue
             aach = v.info["SNPEFF_AMINO_ACID_CHANGE"]
+            payload = "\t".join([
+                v.gene,
+                aach,
+            ])
             if aach[0] == aach[-1]:
-                payload = "\t".join([
-                    v.gene,
-                    aach,
-                ])
+                print("#" + payload)
+            else:
                 print(payload)
 #    for k, v in summary.items():
 #        reference.variant = v
