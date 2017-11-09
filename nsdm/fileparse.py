@@ -10,6 +10,8 @@ param = re.compile("LOW|MODIFIER")
 
 class Vcf:
     def __init__(self, data):
+        print(data)
+        exit()
         info = data.INFO["ANN"][0].split("|")
         self.alt = str(data.ALT[0])
         self.ref = data.REF
@@ -43,7 +45,6 @@ def vcf_read(filename):
         print(v)
         print(v.__dict__)
         print(v.POS)
-        exit()
         vcfobj = Vcf(v)
         if re.match(param, vcfobj.impact) == None:
             result.append(vcfobj)
