@@ -11,7 +11,7 @@ param = re.compile("LOW|MODIFIER")
 class Vcf:
     def __init__(self, data):
         "'CHROM', 'POS', 'ID', 'REF', 'ALT', 'QUAL', 'FILTER', 'INFO', 'FORMAT', 'start', 'end', 'alleles', 'samples', '_sample_indexes', 'affected_start', 'affected_end'"
-        print(data.INFO)
+        print(data.INFO.keys())
         exit()
         info = data.INFO["ANN"][0].split("|")
         self.alt = str(data.ALT[0])
