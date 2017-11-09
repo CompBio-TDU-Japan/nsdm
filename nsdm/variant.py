@@ -23,7 +23,7 @@ def allcheck(ref_file, vcfdir, gff_file):
                 aach,
             ])
             if aach[0] == aach[-1]:
-                print("#" + payload)
+                print("#same!" + payload)
             else:
                 print(payload)
 #    for k, v in summary.items():

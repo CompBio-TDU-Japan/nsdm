@@ -55,7 +55,6 @@ def vcf_read(filename):
     for v in vcf_r:
         vcfobj = Vcf(v)
         if vcfobj.impact is "":
-            print("!no_annotation", vcfobj.__dict__)
             continue
         if re.match(param, vcfobj.impact) is None:
             result.append(vcfobj)
