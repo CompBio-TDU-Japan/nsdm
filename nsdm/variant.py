@@ -17,7 +17,7 @@ def allcheck(ref_file, vcfdir, gff_file):
     print(header)
     for k, variantlist in summary.items():
         for v in variantlist:
-            if v.info["SNPEFF_EFFECT"] != "NON_SYNONYMOUS_CODING":
+            if v.info["SNPEFF_EFFECT"] == "SYNONYMOUS_CODING":
                 continue
             aach = v.info["SNPEFF_AMINO_ACID_CHANGE"]
             payload = "\t".join([
