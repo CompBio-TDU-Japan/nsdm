@@ -14,8 +14,8 @@ def allcheck(ref_file, vcfdir, gff_file):
     ])
     print(header)
     for k, v in summary.items():
-        aach = v.info["SNPEFF_AMINO_ACID_CHANGE"]
-        print(v.impact)
+        #        aach = v.info["SNPEFF_AMINO_ACID_CHANGE"]
+        print(v)
         exit()
         if aach[0] == aach[-1]:
             payload = "\t".join([
