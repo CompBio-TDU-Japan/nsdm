@@ -12,6 +12,7 @@ def allcheck(ref_file, vcfdir, gff_file):
         "gene",
         "aa_change",
         "impact",
+        "annotation",
     ])
     print(header)
     for k, variantlist in summary.items():
@@ -22,9 +23,10 @@ def allcheck(ref_file, vcfdir, gff_file):
             payload = "\t".join([
                 v.gene,
                 aach,
+                v.annotation,
                 v.impact,
             ])
-            if v.impact == "MISSENSE":
+            if v.annotation == "MISSENSE":
                 if aach[0] == aach[-1]:
                     print("#same!" + payload)
                 else:
