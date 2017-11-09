@@ -47,7 +47,7 @@ class Gff:
 
 
 def vcf_read(filename):
-    """read vcf file"""
+    """read vcf file. only annotated"""
     filename = filepath(filename)
     result = []
     fp = open(filename, "r")
