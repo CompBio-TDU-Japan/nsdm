@@ -32,8 +32,9 @@ class Ref:
             vseq = translate(vseq)
         return (seq.split("*")[0], vseq.split("*")[0])
 
-    def provean(self, variant):
-        print(variant.__dict__)
+    def provean(self, variantlist):
+        for variant in variantlist:
+            print(variant.__dict__)
 #        x = self.variant[0]
 #        start = 0
 #        end = 0
