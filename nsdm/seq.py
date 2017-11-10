@@ -33,12 +33,10 @@ class Ref:
         return (seq.split("*")[0], vseq.split("*")[0])
 
     def provean(self, variantlist):
-        gene = variantlist[0].gene
-        print(gene)
-        exit()
-#        x = self.variant[0]
-#        start = 0
-#        end = 0
+        x = variantlist[0]
+        gene = x.gene
+        start = x.start - 1
+        end = x.end
 #        if isinstance(x.start, str):
 #            start = int(x.start) - 1
 #        if isinstance(x.end, str):
