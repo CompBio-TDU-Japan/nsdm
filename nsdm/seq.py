@@ -49,7 +49,8 @@ class Ref:
             nseq = seq_reverse(nseq)
         print(">", gene)
         pseq, none = translate(nseq)
-        print(pseq)
+        result["fasta"] = ">" + gene + "\n" + pseq[:-2]
+        print(result["fasta"])
 
         #        result = []
         #        for v in self.variant:
