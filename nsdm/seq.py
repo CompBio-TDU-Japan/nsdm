@@ -48,7 +48,7 @@ class Ref:
         if variantlist[0].strand == "-":
             nseq = seq_reverse(nseq)
         pseq, none = translate(nseq)
-        result["fasta"] = ">" + gene + "\n" + pseq[:-2]
+        result["fasta"] = ">" + gene + "\n" + pseq.split("*")[0]
         print(result["fasta"])
 
         #        result = []
