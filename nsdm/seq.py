@@ -39,15 +39,14 @@ class Ref:
         start = int(x.start) - 1
         end = int(x.end)
         var = []
-        for variant in variantlist:
-            var.append(variant.info["SNPEFF_AMINO_ACID_CHANGE"])
+        for v in variantlist:
+            var.append(v.info["SNPEFF_AMINO_ACID_CHANGE"])
+            if v.annotation != "MISSENSE":
+                print(v.annotation)
+                continue
         result["variant"] = var
         genome = self.seq
         nseq = self.seq[start:end]
-        print(gene)
-        print(nseq)
-#        base_vpseq_genome = genome
-#        base_vpseq_genome = list(base_vpseq_genome)
 #        result = []
 #        for v in self.variant:
 #            if v.annotation != "missense_variant":
