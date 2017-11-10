@@ -35,6 +35,7 @@ class Ref:
     def provean(self, variantlist):
         for variant in variantlist:
             print(variant.__dict__)
+        exit()
 #        x = self.variant[0]
 #        start = 0
 #        end = 0
