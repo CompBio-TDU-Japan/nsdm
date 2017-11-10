@@ -37,12 +37,10 @@ class Ref:
         gene = x.gene
         start = int(x.start) - 1
         end = int(x.end)
-#        if isinstance(x.start, str):
-#            start = int(x.start) - 1
-#        if isinstance(x.end, str):
-#            end = int(x.end)
+        for variant in variantlist:
+            print(variant.info["SNPEFF_AMINO_ACID_CHANGE"])
 #        genome = self.seq
-#        seq = self.seq[start:end]
+#        nseq = self.seq[start:end]
 #        base_vpseq_genome = genome
 #        base_vpseq_genome = list(base_vpseq_genome)
 #        result = []
