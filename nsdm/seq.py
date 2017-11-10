@@ -34,11 +34,15 @@ class Ref:
 
     def provean(self, variantlist):
         x = variantlist[0]
+        result = dict()
         gene = x.gene
         start = int(x.start) - 1
         end = int(x.end)
+        var = []
         for variant in variantlist:
-            print(variant.info["SNPEFF_AMINO_ACID_CHANGE"])
+            var.append(variant.info["SNPEFF_AMINO_ACID_CHANGE"])
+        result["variant"] = var
+        print(var)
 #        genome = self.seq
 #        nseq = self.seq[start:end]
 #        base_vpseq_genome = genome
