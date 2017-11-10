@@ -50,6 +50,7 @@ class Ref:
         pseq, none = translate(nseq)
         result["fasta"] = [gene,
                            ">" + gene + "\n" + pseq.split("*")[0]]
+        return result
 
         #        result = []
         #        for v in self.variant:
