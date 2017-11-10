@@ -52,47 +52,6 @@ class Ref:
                            ">" + gene + "\n" + pseq.split("*")[0]]
         return result
 
-        #        result = []
-        #        for v in self.variant:
-        #            if v.annotation != "missense_variant":
-        #                continue
-        #            pos = int(v.pos) - 1
-        #            base_vpseq_genome[pos] = v.alt
-        #            v.nvp = pos - start
-        #            v.pvp = math.ceil((v.nvp + 1) / 3) - 1
-        #            if v.strand == "-":
-        #                v.nvp = len(seq) - (v.nvp) - 1
-        #                v.pvp = math.ceil((v.nvp + 1) / 3) - 1
-        #            result.append(v)
-        #        vseq = "".join(base_vpseq_genome)[start:end]
-        #        if len(result) == 0:
-        #            return result
-        #        if result[0].strand == "-":
-        #            seq = seq_reverse(seq)
-        #            vseq = seq_reverse(vseq)
-        #        vppos = [x.pvp for x in result]
-        #        nseq = seq
-        #        nvseq = vseq
-        #        vinfov = []
-        #        vinfon = []
-        #        if result[0].strand == "-":
-        #            seq, vinfon = translate(seq, vppos)
-        #            vseq, vinfov = translate(vseq, vppos)
-        #        else:
-        #            seq, vinfon = translate(seq, vppos)
-        #            vseq, vinfov = translate(vseq, vppos)
-        #        for n, v in enumerate(result):
-        #            v.palt = vseq[v.pvp]
-        #            v.pref = seq[v.pvp]
-        #            v.nseq = nseq
-        #            v.nvseq = nvseq
-        #            v.protein = seq.split("*")[0]
-        #            v.vprotein = vseq.split("*")[0]
-        #            v.codon_aa = [x for x in zip(vinfon, vinfov)]
-        #            result[n] = v
-        #        return result
-        #
-
 
 def seq_reverse(seq):
     compliments = {'N': 'N', 'A': 'T', 'C': 'G', 'G': 'C', 'T': 'A'}
