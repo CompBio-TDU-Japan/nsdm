@@ -35,8 +35,8 @@ class Ref:
     def provean(self, variantlist):
         x = variantlist[0]
         gene = x.gene
-        start = x.start - 1
-        end = x.end
+        start = int(x.start) - 1
+        end = int(x.end)
 #        if isinstance(x.start, str):
 #            start = int(x.start) - 1
 #        if isinstance(x.end, str):
