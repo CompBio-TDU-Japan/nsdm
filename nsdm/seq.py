@@ -48,8 +48,8 @@ class Ref:
         if variantlist[0].strand == "-":
             nseq = seq_reverse(nseq)
         pseq, none = translate(nseq)
-        result["fasta"] = ">" + gene + "\n" + pseq.split("*")[0]
-        print(result["fasta"])
+        result["fasta"] = [gene,
+                           ">" + gene + "\n" + pseq.split("*")[0]]
 
         #        result = []
         #        for v in self.variant:
