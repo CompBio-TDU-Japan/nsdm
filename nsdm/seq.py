@@ -42,9 +42,10 @@ class Ref:
         for variant in variantlist:
             var.append(variant.info["SNPEFF_AMINO_ACID_CHANGE"])
         result["variant"] = var
-        print(var)
-#        genome = self.seq
-#        nseq = self.seq[start:end]
+        genome = self.seq
+        nseq = self.seq[start:end]
+        print(gene)
+        print(nseq)
 #        base_vpseq_genome = genome
 #        base_vpseq_genome = list(base_vpseq_genome)
 #        result = []
