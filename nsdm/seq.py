@@ -42,8 +42,8 @@ class Ref:
         for v in variantlist:
             var.append(v.info["SNPEFF_AMINO_ACID_CHANGE"])
             if v.annotation != "MISSENSE":
-                print(v.annotation)
                 continue
+            print(v.strand)
         result["variant"] = var
         genome = self.seq
         nseq = self.seq[start:end]
