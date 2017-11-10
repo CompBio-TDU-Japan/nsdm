@@ -6,9 +6,8 @@ import math
 
 
 class Ref:
-    def __init__(self, reference_file, vunions):
+    def __init__(self, reference_file):
         self.seq = fileparse.reference_read(reference_file)
-        self.variant = vunions
 
     def cut(self):
         x = self.variant[0]
@@ -33,8 +32,8 @@ class Ref:
             vseq = translate(vseq)
         return (seq.split("*")[0], vseq.split("*")[0])
 
-    def provean(self):
-        print(self.variant[0].__dict__)
+    def provean(self, variant):
+        print(self.variant.__dict__)
 #        x = self.variant[0]
 #        start = 0
 #        end = 0
