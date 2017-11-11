@@ -71,6 +71,26 @@ def reference_read(filename):
     return reference
 
 
+def provean_read(filename):
+    f = open(filename, "r")
+    gene = ""
+    result = dict()
+    p1 = re.compile("^# Query")
+    p2 = re.compile("^#|^\[")
+    for i in f:
+        i = i.strip()
+        if re.match(p1, i) is not None:
+            gene = os.path.basename(i.split(":").strip()).split(".")[0]
+        if re.match(p2, i) is not None:
+            continue
+        scores = i.split()
+        result[gene] = result.get(gene, []) + [
+            {"change": scores[0],
+             "provean_score":scores[1],
+             }]
+    return result
+
+
 def vcf_allread(targetdir):
     result = []
     allvariantdir = filepath(targetdir)
