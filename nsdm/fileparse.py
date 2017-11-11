@@ -91,6 +91,17 @@ def provean_read(filename):
     return result
 
 
+def provean_union_add(provean_data, uniondata):
+    result = dict()
+    for gene, pscores in provean_data.items():
+        vobjs = []
+        for vobj, pscore in zip(uniondata[gene], pscores):
+            vobj.provean_score = pscore["provean_score"]
+            vobjs.append(vobj)
+        result[gene] = vobjs
+    return result
+
+
 def vcf_allread(targetdir):
     result = []
     allvariantdir = filepath(targetdir)
