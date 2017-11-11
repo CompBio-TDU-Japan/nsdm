@@ -97,6 +97,10 @@ def provean_union_add(provean_data, uniondata):
         vobjs = []
         for vobj, pscore in zip(uniondata[gene], pscores):
             vobj.provean_score = pscore["provean_score"]
+            if float(pscore["provean_score"]) <= -2.5:
+                vobj.provean_judge = "damaging"
+            else:
+                vobj.provean_judge = "tolerated"
             vobjs.append(vobj)
         result[gene] = vobjs
     return result
