@@ -80,7 +80,7 @@ def provean_read(filename):
     for i in f:
         i = i.strip()
         if re.match(p1, i) is not None:
-            gene = os.path.basename(i.split(":").strip()).split(".")[0]
+            gene = os.path.basename(i.split(":")[1].strip()).split(".")[0]
         if re.match(p2, i) is not None:
             continue
         scores = i.split()
