@@ -40,9 +40,9 @@ class Ref:
         end = int(x.end)
         var = []
         for v in variantlist:
-            var.append(v.info["SNPEFF_AMINO_ACID_CHANGE"])
             if v.annotation != "MISSENSE":
                 continue
+            var.append(v.info["SNPEFF_AMINO_ACID_CHANGE"])
         result["variant"] = var
         nseq = self.seq[start:end]
         if variantlist[0].strand == "-":
