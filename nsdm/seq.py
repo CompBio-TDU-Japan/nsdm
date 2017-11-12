@@ -43,6 +43,8 @@ class Ref:
             if v.annotation != "MISSENSE":
                 continue
             var.append(v.info["SNPEFF_AMINO_ACID_CHANGE"])
+        if len(var) is 0:
+            return None
         result["variant"] = var
         nseq = self.seq[start:end]
         if variantlist[0].strand == "-":
