@@ -84,10 +84,9 @@ def provean_read(filename):
         if re.match(p2, i) is not None:
             continue
         scores = i.split()
-        result[gene] = result.get(gene, []) + [
-            {"change": scores[0],
-             "provean_score":scores[1],
-             }]
+        tmp = result.get(gene, {})
+        tmp.update({scores[0]: scores[1]})
+        result[gene] = tmp
     return result
 
 
@@ -95,10 +94,12 @@ def provean_union_add(provean_data, uniondata):
     result = dict()
     for gene, pscores in provean_data.items():
         vobjs = []
-        for vobj, pscore in zip(uniondata[gene], pscores):
-            vobj.provean_change = pscore["change"]
-            vobj.provean_score = pscore["provean_score"]
-            if float(pscore["provean_score"]) <= -2.5:
+        for vobj in uniondata[gene]:
+            vchange = vobj.info["SNPEFF_AMINO_ACID_CHANGE"]
+            if (vchange in pscores) is False:
+                continue
+            vobj.provean_score = pscores[vchange]
+            if float(vobj.provean_score) <= -2.5:
                 vobj.provean_judge = "damaging"
             else:
                 vobj.provean_judge = "tolerated"
