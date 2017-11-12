@@ -104,7 +104,8 @@ def provean_union_add(provean_data, uniondata):
             else:
                 vobj.provean_judge = "tolerated"
             vobjs.append(vobj)
-        result[gene] = vobjs
+        if len(vobjs) > 0:
+            result[gene] = vobjs
     return result
 
 
