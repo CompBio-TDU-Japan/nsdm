@@ -72,7 +72,7 @@ def reference_read(filename):
 
 
 def provean_read(filename):
-    f = open(filename, "r")
+    f = open(filepath(filename), "r")
     gene = ""
     result = dict()
     p1 = re.compile("^# Query")
