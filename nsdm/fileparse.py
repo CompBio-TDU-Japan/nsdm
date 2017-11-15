@@ -220,6 +220,18 @@ def bbhdict(f):
     return ret
 
 
+def bbh_gene(f, genelist):
+    result = dict()
+    bdict = bbhdict(f)
+    for key in genelist:
+        homolog = bdict[key]
+        if homolog == "-":
+            continue
+        else:
+            result[homolog] = key
+    return result
+
+
 def bbh(f, variantdict):
     result = dict()
     bdict = bbhdict(f)
