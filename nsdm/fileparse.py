@@ -90,11 +90,12 @@ def provean_read(filename):
     return result
 
 
-def provean_add(provean_data, data):
+def provean_add(provean_data, datadict):
     result = dict()
     for gene, pscores in provean_data.items():
         vobjs = []
-        for vlist in data[gene]:
+        for vlist in datadict[gene]:
+            print(vlist)
             for vobj in vlist:
                 vchange = vobj.info["SNPEFF_AMINO_ACID_CHANGE"]
                 if (vchange in pscores) is False:
