@@ -90,6 +90,26 @@ def provean_read(filename):
     return result
 
 
+def provean_add(provean_data, data):
+    result = dict()
+    for gene, pscores in provean_data.items():
+        vobjs = []
+        for vlist in data[gene]:
+            for vobj in vlist:
+                vchange = vobj.info["SNPEFF_AMINO_ACID_CHANGE"]
+                if (vchange in pscores) is False:
+                    continue
+                vobj.provean_score = pscores[vchange]
+                if float(vobj.provean_score) <= -2.5:
+                    vobj.provean_judge = "damaging"
+                else:
+                    vobj.provean_judge = "tolerated"
+                vobjs.append(vobj)
+        if len(vobjs) > 0:
+            result[gene] = vobjs
+    return result
+
+
 def provean_union_add(provean_data, uniondata):
     result = dict()
     for gene, pscores in provean_data.items():
