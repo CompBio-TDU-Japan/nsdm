@@ -94,8 +94,8 @@ def provean_add(provean_data, datadict):
     result = dict()
     for gene, pscores in provean_data.items():
         vobjs = []
+        print(datadict)
         for vlist in datadict[gene]:
-            print(vlist)
             for vobj in vlist:
                 vchange = vobj.info["SNPEFF_AMINO_ACID_CHANGE"]
                 if (vchange in pscores) is False:
