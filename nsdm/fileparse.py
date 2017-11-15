@@ -136,15 +136,14 @@ def gff_read(filename):
 def gff_add(variants, gffdict=None):
     vsum = dict()
     for v in variants:
-        print(v)
-#        if in_cobj(vsum.get(v.gene, []), v) == False:
-#            gff = gffdict[v.gene]
-#            v.start = gff.start
-#            v.end = gff.end
-#            v.strand = gff.strand
-#            v.description = gff.description
-#            vsum[v.gene] = vsum.get(v.gene, []) + [v]
-#    return vsum
+        if in_cobj(vsum.get(v.gene, []), v) is False:
+            gff = gffdict[v.gene]
+            v.start = gff.start
+            v.end = gff.end
+            v.strand = gff.strand
+            v.description = gff.description
+            vsum[v.gene] = vsum.get(v.gene, []) + [v]
+    return vsum
 
 
 def v_intersect(variant_list):
