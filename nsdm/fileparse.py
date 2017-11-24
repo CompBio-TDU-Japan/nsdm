@@ -134,7 +134,6 @@ def vcf_allread(targetdir):
     result = []
     allvariantdir = filepath(targetdir)
     vcffiles = sorted(glob.glob(allvariantdir + "/*.vcf"))
-    print(vcffiles)
     for i in vcffiles:
         vlist = vcf_read(i)
         result.append(vlist)
