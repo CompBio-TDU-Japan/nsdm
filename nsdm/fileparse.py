@@ -188,13 +188,13 @@ def gff_read(filename):
 def gff_add(variants, gffdict=None):
     vsum = dict()
     for v in variants:
-        if in_cobj(vsum.get(v.gene, []), v) is False:
-            gff = gffdict[v.gene]
+        if in_cobj(vsum.get(v.Gene_ID, []), v) is False:
+            gff = gffdict[v.Gene_ID]
             v.start = gff.start
             v.end = gff.end
             v.strand = gff.strand
             v.description = gff.description
-            vsum[v.gene] = vsum.get(v.gene, []) + [v]
+            vsum[v.Gene_ID] = vsum.get(v.Gene_ID, []) + [v]
     return vsum
 
 
