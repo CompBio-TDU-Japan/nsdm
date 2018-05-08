@@ -35,7 +35,7 @@ class Ref:
     def provean(self, variantlist):
         x = variantlist[0]
         result = dict()
-        gene = x.gene
+        gene = x.Gene_ID
         start = int(x.start) - 1
         end = int(x.end)
         var = []
