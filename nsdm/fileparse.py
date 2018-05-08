@@ -3,6 +3,7 @@ import vcf
 import re
 import glob
 import os.path
+from Bio import SeqUtils as SeqUtils
 import hashlib
 
 param = re.compile("LOW|MODIFIER")
@@ -10,30 +11,60 @@ param = re.compile("LOW|MODIFIER")
 
 class Vcf:
     def __init__(self, data):
-        # 'CHROM', 'POS', 'ID', 'REF', 'ALT',
-        # 'QUAL', 'FILTER', 'INFO', 'FORMAT',
-        # 'start', 'end', 'alleles', 'samples',
-        # '_sample_indexes', 'affected_start',
-        # 'affected_end'
-        # INFO:'AC', 'AF', 'AN', 'BaseQRankSum',
-        # 'ClippingRankSum', 'DP', 'FS', 'MLEAC',
-        # 'MLEAF', 'MQ', 'MQRankSum', 'QD',
-        # 'ReadPosRankSum', 'SNPEFF_AMINO_ACID_CHANGE',
-        # 'SNPEFF_CODON_CHANGE', 'SNPEFF_EFFECT',
-        # 'SNPEFF_EXON_ID', 'SNPEFF_FUNCTIONAL_CLASS',
-        # 'SNPEFF_GENE_BIOTYPE', 'SNPEFF_GENE_NAME',
-        # 'SNPEFF_IMPACT', 'SNPEFF_TRANSCRIPT_ID', 'SOR'
-        self.info = data.INFO
-        self.alt = str(data.ALT[0])
-        self.ref = data.REF
-        self.pos = str(data.POS)
-        self.annotation = data.INFO.get("SNPEFF_FUNCTIONAL_CLASS", "")
-        self.impact = data.INFO.get("SNPEFF_IMPACT", "")
-        self.gene = data.INFO.get("SNPEFF_GENE_NAME", "")
-        self.feature = data.INFO.get("SNPEFF_TRANSCRIPT_ID", "")
-        vid = (self.alt + self.ref + self.pos + self.annotation
-               + self.impact + self.gene + self.feature)
-        self.sha1 = hashlib.sha1(vid.encode('utf-8')).hexdigest()
+        # VCF object. The following are the attributes.
+        # 'Allele', 'Annotation', 'Annotation_Impact', 'Gene_Name', 'Gene_ID',
+        # 'Feature_Type', 'Feature_ID', 'Transcript_BioType',
+        # 'Rank', 'HGVSc', 'HGVSp', 'cDNApos/cDNAlength',
+        # 'CDSpos/CDSlength', 'AApos/AAlength', 'Distance',
+        # 'ERRORS/WARNINGS/INFO', 'AC', 'AF', 'AN', 'BaseQRankSum',
+        # 'ClippingRankSum', 'DP', 'FS',
+        # 'MLEAC', 'MLEAF', 'MQ', 'MQRankSum', 'QD', 'ReadPosRankSum', 'SOR',
+        # 'CHROM', 'POS', 'ID',
+        # 'REF', 'ALT', 'QUAL', 'FILTER', 'FORMAT', 'start', 'end', 'alleles',
+        # 'samples', '_sample_indexes','sample_name'
+        # 'affected_start', 'affected_end', 'sha1'
+        annheader = "".join(['Allele|Annotation|Annotation_Impact|',
+                             'Gene_Name|Gene_ID|Feature_Type|',
+                             'Feature_ID|Transcript_BioType|Rank|',
+                             'HGVSc|HGVSp|cDNApos/cDNAlength',
+                             '|CDSpos/CDSlength|AApos/AAlength|',
+                             'Distance|ERRORS/WARNINGS/INFO']).split("|")
+        ann = {k: v for k, v in zip(
+            annheader, data.INFO.get("ANN")[0].split("|"))}
+        data.INFO.pop("ANN")
+        self.__dict__.update(ann)
+        self.__dict__.update(data.INFO)
+        data.__dict__.pop("INFO")
+        self.__dict__.update(data.__dict__)
+        self.ALT = str(self.ALT[0])
+        checkid = "".join([
+            self.REF,
+            self.ALT,
+            self.Annotation_Impact,
+            str(self.POS),
+            self.Gene_ID,
+            self.Feature_ID,
+            self.Annotation,
+        ])
+        self.sha1 = hashlib.sha1(checkid.encode('utf-8')).hexdigest()
+        self.sample_name = list(self._sample_indexes)[0]
+        self.SNPEFF_AMINO_ACID_CHANGE = ""
+        if self.Annotation == "missense_variant":
+            aach = self.HGVSp.split(".")[1]
+            aminochange = [aach[:3], aach[3:-3], aach[-3:]]
+            self.SNPEFF_AMINO_ACID_CHANGE = "".join([
+                SeqUtils.IUPACData.protein_letters_3to1_extended[aminochange[0]],
+                aminochange[1],
+                SeqUtils.IUPACData.protein_letters_3to1_extended[aminochange[2]],
+            ])
+        elif self.Annotation == "stop_gained":
+            aach = self.HGVSp.split(".")[1]
+            aminochange = [aach[:3], aach[3:-3], aach[-3:]]
+            self.SNPEFF_AMINO_ACID_CHANGE = "".join([
+                SeqUtils.IUPACData.protein_letters_3to1_extended[aminochange[0]],
+                aminochange[1],
+                aminochange[2].strip(),
+            ])
 
 
 class Gff:
@@ -54,9 +85,9 @@ def vcf_read(filename):
     vcf_r = vcf.Reader(fp)
     for v in vcf_r:
         vcfobj = Vcf(v)
-        if vcfobj.impact is "":
+        if vcfobj.Annotation_Impact is "":
             continue
-        if re.match(param, vcfobj.impact) is None:
+        if re.match(param, vcfobj.Annotation_Impact) is None:
             result.append(vcfobj)
     fp.close()
     return result
@@ -97,7 +128,7 @@ def provean_add(provean_data, datadict):
         if (gene in datadict) is False:
             continue
         for vobj in datadict[gene]:
-            vchange = vobj.info["SNPEFF_AMINO_ACID_CHANGE"]
+            vchange = vobj.SNPEFF_AMINO_ACID_CHANGE
             if (vchange in pscores) is False:
                 continue
             vobj.provean_score = pscores[vchange]
@@ -116,7 +147,7 @@ def provean_union_add(provean_data, uniondata):
     for gene, pscores in provean_data.items():
         vobjs = []
         for vobj in uniondata[gene]:
-            vchange = vobj.info["SNPEFF_AMINO_ACID_CHANGE"]
+            vchange = vobj.SNPEFF_AMINO_ACID_CHANGE
             if (vchange in pscores) is False:
                 continue
             vobj.provean_score = pscores[vchange]
@@ -184,18 +215,18 @@ def v_union(variant_list, gffdict=None):
     if gffdict == None:
         for g in variant_list:
             for v in g:
-                if in_cobj(vsum.get(v.gene, []), v) == False:
-                    vsum[v.gene] = vsum.get(v.gene, []) + [v]
+                if in_cobj(vsum.get(v.Gene_ID, []), v) == False:
+                    vsum[v.Gene_ID] = vsum.get(v.Gene_ID, []) + [v]
     else:
         for g in variant_list:
             for v in g:
-                if in_cobj(vsum.get(v.gene, []), v) == False:
-                    gff = gffdict[v.gene]
+                if in_cobj(vsum.get(v.Gene_ID, []), v) == False:
+                    gff = gffdict[v.Gene_ID]
                     v.start = gff.start
                     v.end = gff.end
                     v.strand = gff.strand
                     v.description = gff.description
-                    vsum[v.gene] = vsum.get(v.gene, []) + [v]
+                    vsum[v.Gene_ID] = vsum.get(v.Gene_ID, []) + [v]
     return vsum
 
 
