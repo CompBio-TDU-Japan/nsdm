@@ -40,9 +40,9 @@ class Ref:
         end = int(x.end)
         var = []
         for v in variantlist:
-            if v.annotation != "MISSENSE":
+            if v.Annotation != "missense_variant":
                 continue
-            var.append(v.info["SNPEFF_AMINO_ACID_CHANGE"])
+            var.append(v.SNPEFF_AMINO_ACID_CHANGE)
         if len(var) is 0:
             return None
         result["variant"] = var
